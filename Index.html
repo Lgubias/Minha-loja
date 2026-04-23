@@ -1,257 +1,889 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>MAVIEN</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MAVIEN | Loja</title>
+  <style>
+    :root{
+      --bg:#060606;
+      --bg-soft:#0f0f10;
+      --bg-card:#121214;
+      --gold:#c9a64b;
+      --gold-soft:#f1d98a;
+      --gold-glow:rgba(201,166,75,.25);
+      --text:#f6f1e8;
+      --muted:#b8ae9c;
+      --line:rgba(201,166,75,.22);
+      --shadow:0 16px 40px rgba(0,0,0,.35);
+      --radius:22px;
+      --max:1200px;
+      --success:#25D366;
+    }
 
-<style>
-body {
-  margin:0;
-  font-family: 'Segoe UI', sans-serif;
-  background:#f5f1ed;
-  color:#333;
-}
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family: Arial, Helvetica, sans-serif;
+      background:
+        radial-gradient(circle at top, rgba(201,166,75,.08), transparent 24%),
+        linear-gradient(180deg, #050505 0%, #0b0b0c 100%);
+      color:var(--text);
+    }
 
-/* HEADER */
-header {
-  background:white;
-  padding:20px;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  border-bottom:1px solid #eee;
-}
+    a{text-decoration:none;color:inherit}
+    img{display:block;max-width:100%}
 
-header h1 {
-  margin:0;
-  font-weight:600;
-}
+    .container{
+      width:min(var(--max), calc(100% - 32px));
+      margin:0 auto;
+    }
 
-.cart-btn {
-  cursor:pointer;
-  background:black;
-  color:white;
-  padding:8px 15px;
-  border-radius:20px;
-}
+    header{
+      position:sticky;
+      top:0;
+      z-index:30;
+      backdrop-filter:blur(14px);
+      background:rgba(8,8,8,.82);
+      border-bottom:1px solid var(--line);
+    }
 
-/* HERO */
-.hero {
-  background:#c8a27a;
-  color:white;
-  text-align:center;
-  padding:80px 20px;
-}
+    .header-inner{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:16px;
+      padding:18px 0;
+    }
 
-.hero h2 {
-  font-size:40px;
-  margin-bottom:10px;
-}
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:14px;
+    }
 
-.hero button {
-  padding:12px 25px;
-  border:none;
-  background:white;
-  color:black;
-  border-radius:20px;
-  cursor:pointer;
-}
+    .brand-mark{
+      width:48px;
+      height:48px;
+      border-radius:50%;
+      border:1px solid var(--gold);
+      display:grid;
+      place-items:center;
+      color:var(--gold-soft);
+      font-family: Georgia, "Times New Roman", serif;
+      font-size:1.5rem;
+      box-shadow:0 0 20px var(--gold-glow), inset 0 0 14px rgba(201,166,75,.12);
+    }
 
-/* GRID PRODUTOS */
-.grid {
-  display:grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px,1fr));
-  gap:20px;
-  padding:30px;
-}
+    .brand-text strong{
+      display:block;
+      font-family: Georgia, "Times New Roman", serif;
+      color:var(--gold-soft);
+      font-size:1.4rem;
+      letter-spacing:.14em;
+    }
 
-.card {
-  background:white;
-  border-radius:15px;
-  overflow:hidden;
-  box-shadow:0 5px 15px rgba(0,0,0,0.05);
-}
+    .brand-text span{
+      color:var(--muted);
+      font-size:.9rem;
+    }
 
-.card img {
-  width:100%;
-  height:220px;
-  object-fit:cover;
-}
+    .header-right{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      flex-wrap:wrap;
+    }
 
-.card-content {
-  padding:15px;
-}
+    .menu-link{
+      color:var(--muted);
+      font-size:.95rem;
+    }
 
-.card h3 {
-  margin:0;
-  font-size:18px;
-}
+    .menu-link:hover{
+      color:var(--gold-soft);
+    }
 
-.card p {
-  margin:10px 0;
-}
+    .cart-toggle{
+      border:none;
+      background:linear-gradient(135deg, var(--gold-soft), var(--gold));
+      color:#171717;
+      border-radius:999px;
+      padding:12px 18px;
+      cursor:pointer;
+      font-weight:700;
+      box-shadow:0 10px 26px rgba(201,166,75,.18);
+    }
 
-.card button {
-  width:100%;
-  padding:10px;
-  background:black;
-  color:white;
-  border:none;
-  border-radius:10px;
-  cursor:pointer;
-}
+    .hero{
+      padding:78px 0 34px;
+    }
 
-/* CARRINHO */
-.cart {
-  position:fixed;
-  right:-350px;
-  top:0;
-  width:300px;
-  height:100%;
-  background:white;
-  box-shadow:-5px 0 20px rgba(0,0,0,0.1);
-  padding:20px;
-  transition:0.3s;
-  overflow:auto;
-}
+    .hero-box{
+      min-height:520px;
+      border:1px solid var(--line);
+      border-radius:32px;
+      overflow:hidden;
+      position:relative;
+      box-shadow:var(--shadow);
+      background:
+        linear-gradient(180deg, rgba(0,0,0,.28), rgba(0,0,0,.62)),
+        url('https://images.unsplash.com/photo-1483985988355-763728e1935b?auto=format&fit=crop&w=1400&q=80') center/cover no-repeat;
+    }
 
-.cart.active {
-  right:0;
-}
+    .hero-overlay{
+      padding:56px;
+      max-width:700px;
+    }
 
-.cart h2 {
-  margin-top:0;
-}
+    .eyebrow{
+      display:inline-block;
+      text-transform:uppercase;
+      letter-spacing:.24em;
+      color:var(--gold-soft);
+      font-size:.78rem;
+      font-weight:700;
+      margin-bottom:18px;
+      text-shadow:0 0 14px rgba(201,166,75,.28);
+    }
 
-.cart ul {
-  list-style:none;
-  padding:0;
-}
+    .hero h1{
+      margin:0 0 14px;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size:clamp(2.5rem, 6vw, 5rem);
+      line-height:.95;
+      font-weight:500;
+      color:#fff7de;
+      text-shadow:0 0 24px rgba(201,166,75,.16);
+    }
 
-.cart li {
-  margin-bottom:10px;
-}
+    .hero p{
+      margin:0 0 24px;
+      max-width:560px;
+      color:#e6dcc8;
+      font-size:1.08rem;
+      line-height:1.75;
+    }
 
-.checkout {
-  margin-top:20px;
-  width:100%;
-  padding:12px;
-  background:#25D366;
-  color:white;
-  border:none;
-  border-radius:10px;
-  cursor:pointer;
-}
-</style>
+    .hero-actions{
+      display:flex;
+      flex-wrap:wrap;
+      gap:12px;
+      margin-bottom:24px;
+    }
+
+    .btn{
+      border:none;
+      border-radius:999px;
+      padding:14px 22px;
+      cursor:pointer;
+      font-weight:700;
+      transition:.2s ease;
+    }
+
+    .btn-gold{
+      background:linear-gradient(135deg, var(--gold-soft), var(--gold));
+      color:#191919;
+      box-shadow:0 10px 28px rgba(201,166,75,.2);
+    }
+
+    .btn-gold:hover,
+    .btn-dark:hover,
+    .product-btn:hover,
+    .buy-btn:hover,
+    .checkout-btn:hover{
+      transform:translateY(-2px);
+    }
+
+    .btn-dark{
+      background:rgba(255,255,255,.06);
+      color:#fff7de;
+      border:1px solid var(--line);
+    }
+
+    .hero-tags{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+    }
+
+    .tag{
+      padding:10px 14px;
+      border-radius:999px;
+      border:1px solid rgba(201,166,75,.18);
+      background:rgba(9,9,9,.38);
+      color:var(--gold-soft);
+      font-size:.92rem;
+      backdrop-filter:blur(8px);
+    }
+
+    .section{
+      padding:36px 0;
+    }
+
+    .section-head{
+      margin-bottom:20px;
+    }
+
+    .section-head h2{
+      margin:0 0 8px;
+      font-family: Georgia, "Times New Roman", serif;
+      font-weight:500;
+      font-size:clamp(1.8rem, 4vw, 2.8rem);
+      color:#fff2c9;
+    }
+
+    .section-head p{
+      margin:0;
+      color:var(--muted);
+      line-height:1.7;
+      max-width:760px;
+    }
+
+    .filters{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      margin-top:18px;
+    }
+
+    .filter-btn{
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.03);
+      color:var(--muted);
+      padding:12px 18px;
+      border-radius:999px;
+      cursor:pointer;
+      font-weight:700;
+    }
+
+    .filter-btn.active{
+      background:linear-gradient(135deg, var(--gold-soft), var(--gold));
+      color:#171717;
+      box-shadow:0 8px 20px rgba(201,166,75,.18);
+    }
+
+    .products{
+      display:grid;
+      grid-template-columns:repeat(4,1fr);
+      gap:18px;
+      margin-top:26px;
+    }
+
+    .card{
+      background:linear-gradient(180deg, rgba(255,255,255,.025), rgba(255,255,255,.01));
+      border:1px solid var(--line);
+      border-radius:22px;
+      overflow:hidden;
+      box-shadow:var(--shadow);
+    }
+
+    .card-media{
+      height:320px;
+      position:relative;
+      overflow:hidden;
+      background:#0c0c0d;
+    }
+
+    .card-media img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+    }
+
+    .badge{
+      position:absolute;
+      top:12px;
+      left:12px;
+      background:rgba(0,0,0,.62);
+      color:var(--gold-soft);
+      border:1px solid rgba(201,166,75,.22);
+      padding:8px 12px;
+      border-radius:999px;
+      font-size:.78rem;
+      backdrop-filter:blur(8px);
+    }
+
+    .glow-line{
+      position:absolute;
+      left:0;
+      right:0;
+      bottom:0;
+      height:2px;
+      background:linear-gradient(90deg, transparent, var(--gold), transparent);
+      box-shadow:0 0 18px rgba(201,166,75,.35);
+    }
+
+    .card-body{
+      padding:18px;
+    }
+
+    .card-title{
+      margin:0 0 8px;
+      font-size:1.04rem;
+      color:var(--text);
+    }
+
+    .price{
+      margin:0 0 14px;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size:1.5rem;
+      color:var(--gold-soft);
+      text-shadow:0 0 14px rgba(201,166,75,.12);
+    }
+
+    .card-actions{
+      display:flex;
+      gap:10px;
+    }
+
+    .product-btn,
+    .buy-btn{
+      flex:1;
+      border:none;
+      padding:12px 14px;
+      border-radius:12px;
+      cursor:pointer;
+      font-weight:700;
+    }
+
+    .product-btn{
+      background:#1b1b1d;
+      color:#fff;
+      border:1px solid rgba(255,255,255,.06);
+    }
+
+    .buy-btn{
+      background:linear-gradient(135deg, var(--gold-soft), var(--gold));
+      color:#171717;
+    }
+
+    .luxury-box{
+      display:grid;
+      grid-template-columns:1.1fr .9fr;
+      gap:20px;
+      border:1px solid var(--line);
+      border-radius:30px;
+      overflow:hidden;
+      box-shadow:var(--shadow);
+      background:
+        linear-gradient(180deg, rgba(255,255,255,.025), rgba(255,255,255,.01));
+    }
+
+    .luxury-copy{
+      padding:34px;
+    }
+
+    .luxury-copy h3{
+      margin:0 0 12px;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size:2.2rem;
+      font-weight:500;
+      color:#fff2c9;
+    }
+
+    .luxury-copy p{
+      margin:0;
+      color:var(--muted);
+      line-height:1.8;
+    }
+
+    .luxury-list{
+      list-style:none;
+      padding:0;
+      margin:18px 0 0;
+      display:grid;
+      gap:10px;
+    }
+
+    .luxury-list li{
+      padding:14px 16px;
+      border:1px solid rgba(201,166,75,.14);
+      border-radius:16px;
+      background:rgba(255,255,255,.02);
+      color:#ebe1cf;
+    }
+
+    .luxury-media{
+      min-height:100%;
+      background:
+        linear-gradient(180deg, rgba(0,0,0,.18), rgba(0,0,0,.4)),
+        url('https://images.unsplash.com/photo-1529139574466-a303027c1d8b?auto=format&fit=crop&w=1200&q=80') center/cover no-repeat;
+    }
+
+    .contact-box{
+      background:linear-gradient(180deg, rgba(255,255,255,.025), rgba(255,255,255,.01));
+      border:1px solid var(--line);
+      border-radius:24px;
+      padding:26px;
+      display:flex;
+      justify-content:space-between;
+      gap:20px;
+      align-items:center;
+      flex-wrap:wrap;
+      box-shadow:var(--shadow);
+    }
+
+    .contact-box h3{
+      margin:0 0 8px;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size:1.8rem;
+      font-weight:500;
+      color:#fff2c9;
+    }
+
+    .contact-box p{
+      margin:0;
+      color:var(--muted);
+    }
+
+    footer{
+      padding:34px 0 54px;
+      text-align:center;
+      color:var(--muted);
+      border-top:1px solid rgba(201,166,75,.1);
+      margin-top:20px;
+    }
+
+    /* carrinho */
+    .cart{
+      position:fixed;
+      top:0;
+      right:-390px;
+      width:370px;
+      max-width:100%;
+      height:100vh;
+      background:#0c0c0d;
+      border-left:1px solid var(--line);
+      box-shadow:-16px 0 34px rgba(0,0,0,.35);
+      transition:.3s ease;
+      z-index:100;
+      display:flex;
+      flex-direction:column;
+    }
+
+    .cart.active{
+      right:0;
+    }
+
+    .cart-head{
+      padding:22px 20px;
+      border-bottom:1px solid var(--line);
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+    }
+
+    .cart-head h3{
+      margin:0;
+      color:#fff2c9;
+      font-size:1.3rem;
+      font-family: Georgia, "Times New Roman", serif;
+      font-weight:500;
+    }
+
+    .close-cart{
+      border:none;
+      background:none;
+      font-size:1.5rem;
+      cursor:pointer;
+      color:var(--muted);
+    }
+
+    .cart-body{
+      padding:18px 20px;
+      overflow:auto;
+      flex:1;
+    }
+
+    .cart-item{
+      border-bottom:1px solid rgba(201,166,75,.12);
+      padding:0 0 14px;
+      margin-bottom:14px;
+    }
+
+    .cart-item strong{
+      display:block;
+      margin-bottom:6px;
+      color:var(--text);
+    }
+
+    .remove-btn{
+      margin-top:8px;
+      border:none;
+      background:#18181a;
+      color:var(--gold-soft);
+      padding:9px 12px;
+      border-radius:10px;
+      cursor:pointer;
+    }
+
+    .cart-footer{
+      border-top:1px solid var(--line);
+      padding:20px;
+      background:#111113;
+    }
+
+    .cart-total{
+      display:flex;
+      justify-content:space-between;
+      font-weight:700;
+      margin-bottom:14px;
+      color:#fff2c9;
+    }
+
+    .checkout-btn{
+      width:100%;
+      border:none;
+      background:var(--success);
+      color:white;
+      padding:14px;
+      border-radius:14px;
+      cursor:pointer;
+      font-weight:700;
+      font-size:1rem;
+    }
+
+    @media (max-width: 1080px){
+      .products{
+        grid-template-columns:repeat(3,1fr);
+      }
+    }
+
+    @media (max-width: 860px){
+      .products{
+        grid-template-columns:repeat(2,1fr);
+      }
+      .luxury-box{
+        grid-template-columns:1fr;
+      }
+      .luxury-media{
+        min-height:280px;
+      }
+    }
+
+    @media (max-width: 640px){
+      .products{
+        grid-template-columns:1fr;
+      }
+      .hero-overlay{
+        padding:28px;
+      }
+      .hero-box{
+        min-height:440px;
+      }
+      .brand-text strong{
+        font-size:1.1rem;
+      }
+      .menu-link{
+        display:none;
+      }
+    }
+  </style>
 </head>
-
 <body>
 
-<header>
-<h1>MAVIEN</h1>
-<div class="cart-btn" onclick="toggleCart()">Carrinho 🛒</div>
-</header>
+  <header>
+    <div class="container header-inner">
+      <div class="brand">
+        <div class="brand-mark">M</div>
+        <div class="brand-text">
+          <strong>MAVIEN</strong>
+          <span>Moda feminina sofisticada</span>
+        </div>
+      </div>
 
-<div class="hero">
-<h2>Nova Coleção</h2>
-<p>Moda feminina elegante</p>
-<button onclick="scrollToProdutos()">Ver Peças</button>
-</div>
+      <div class="header-right">
+        <a class="menu-link" href="#catalogo">Catálogo</a>
+        <a class="menu-link" href="#destaque">Destaque</a>
+        <a class="menu-link" href="#contato">Contato</a>
+        <button class="cart-toggle" onclick="toggleCart()">Carrinho 🛒</button>
+      </div>
+    </div>
+  </header>
 
-<div class="grid" id="produtos"></div>
+  <section class="hero">
+    <div class="container">
+      <div class="hero-box">
+        <div class="hero-overlay">
+          <span class="eyebrow">GLAMOUR • ELEGÂNCIA • PRESENÇA</span>
+          <h1>Nova coleção<br>MAVIEN</h1>
+          <p>
+            Um catálogo sofisticado para mulheres que amam brilho, elegância
+            e peças com presença. Explore a coleção, adicione ao carrinho
+            e finalize sua compra com praticidade.
+          </p>
 
-<!-- CARRINHO -->
-<div class="cart" id="cart">
-<h2>Carrinho</h2>
-<ul id="lista"></ul>
-<p><b>Total: R$ <span id="total">0</span></b></p>
-<button class="checkout" onclick="finalizar()">Comprar no WhatsApp</button>
-</div>
+          <div class="hero-actions">
+            <button class="btn btn-gold" onclick="document.getElementById('catalogo').scrollIntoView({behavior:'smooth'})">
+              Ver catálogo
+            </button>
+            <button class="btn btn-dark" onclick="window.open('https://wa.me/5500000000000?text=Olá,%20quero%20atendimento%20da%20MAVIEN')">
+              Chamar no WhatsApp
+            </button>
+          </div>
 
-<script>
-const produtos = [
-{
-nome:"Vestido Midi Floral",
-preco:189,
-img:"https://images.unsplash.com/photo-1520975916090-3105956dac38"
-},
-{
-nome:"Blusa Cetim",
-preco:119,
-img:"https://images.unsplash.com/photo-1490481651871-ab68de25d43d"
-},
-{
-nome:"Calça Wide Leg",
-preco:159,
-img:"https://images.unsplash.com/photo-1541099649105-f69ad21f3246"
-},
-{
-nome:"Saia Plissada",
-preco:129,
-img:"https://images.unsplash.com/photo-1503342217505-b0a15ec3261c"
-}
-];
+          <div class="hero-tags">
+            <span class="tag">✨ Peças selecionadas</span>
+            <span class="tag">🖤 Visual premium</span>
+            <span class="tag">👠 Atendimento rápido</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-let carrinho = [];
+  <section class="section" id="catalogo">
+    <div class="container">
+      <div class="section-head">
+        <h2>Catálogo da loja</h2>
+        <p>
+          Navegue pelas categorias, visualize as peças e monte seu carrinho com uma experiência elegante e prática.
+        </p>
+      </div>
 
-function render(){
-const div = document.getElementById("produtos");
+      <div class="filters">
+        <button class="filter-btn active" onclick="filtrar('todos', this)">Todos</button>
+        <button class="filter-btn" onclick="filtrar('vestidos', this)">Vestidos</button>
+        <button class="filter-btn" onclick="filtrar('blusas', this)">Blusas</button>
+        <button class="filter-btn" onclick="filtrar('calcas', this)">Calças</button>
+        <button class="filter-btn" onclick="filtrar('saias', this)">Saias</button>
+        <button class="filter-btn" onclick="filtrar('blazers', this)">Blazers</button>
+        <button class="filter-btn" onclick="filtrar('conjuntos', this)">Conjuntos</button>
+      </div>
 
-produtos.forEach((p,i)=>{
-div.innerHTML += `
-<div class="card">
-<img src="${p.img}">
-<div class="card-content">
-<h3>${p.nome}</h3>
-<p>R$ ${p.preco}</p>
-<button onclick="add(${i})">Adicionar</button>
-</div>
-</div>
-`;
-});
-}
+      <div class="products" id="products"></div>
+    </div>
+  </section>
 
-function add(i){
-carrinho.push(produtos[i]);
-updateCart();
-}
+  <section class="section" id="destaque">
+    <div class="container">
+      <div class="luxury-box">
+        <div class="luxury-copy">
+          <h3>Sofisticação com identidade</h3>
+          <p>
+            A MAVIEN foi pensada para transmitir elegância, brilho e feminilidade com força visual.
+            Este site une catálogo, carrinho e compra com uma estética marcante, escura e refinada.
+          </p>
 
-function updateCart(){
-const lista = document.getElementById("lista");
-const total = document.getElementById("total");
+          <ul class="luxury-list">
+            <li>✔ Catálogo organizado por categorias</li>
+            <li>✔ Carrinho lateral elegante e funcional</li>
+            <li>✔ Compra simplificada via WhatsApp</li>
+          </ul>
+        </div>
+        <div class="luxury-media"></div>
+      </div>
+    </div>
+  </section>
 
-lista.innerHTML="";
-let soma = 0;
+  <section class="section" id="contato">
+    <div class="container">
+      <div class="contact-box">
+        <div>
+          <h3>Atendimento MAVIEN</h3>
+          <p>Fale com a loja para dúvidas, combinações, medidas e pedidos.</p>
+        </div>
+        <button class="cart-toggle" onclick="window.open('https://wa.me/5500000000000?text=Olá,%20quero%20atendimento%20da%20MAVIEN')">
+          Falar no WhatsApp
+        </button>
+      </div>
+    </div>
+  </section>
 
-carrinho.forEach(p=>{
-soma += p.preco;
-lista.innerHTML += `<li>${p.nome} - R$ ${p.preco}</li>`;
-});
+  <footer>
+    MAVIEN • Moda feminina • Elegância com glamour
+  </footer>
 
-total.innerText = soma;
-}
+  <aside class="cart" id="cart">
+    <div class="cart-head">
+      <h3>Seu carrinho</h3>
+      <button class="close-cart" onclick="toggleCart()">×</button>
+    </div>
 
-function toggleCart(){
-document.getElementById("cart").classList.toggle("active");
-}
+    <div class="cart-body" id="cartItems">
+      <p style="color:#b8ae9c;">Seu carrinho está vazio.</p>
+    </div>
 
-function scrollToProdutos(){
-window.scrollTo({top:500, behavior:"smooth"});
-}
+    <div class="cart-footer">
+      <div class="cart-total">
+        <span>Total</span>
+        <span>R$ <span id="cartTotal">0,00</span></span>
+      </div>
+      <button class="checkout-btn" onclick="finalizarCompra()">Comprar no WhatsApp</button>
+    </div>
+  </aside>
 
-function finalizar(){
-let texto = "Olá, quero comprar:%0A";
+  <script>
+    const produtos = [
+      {
+        id: 1,
+        categoria: "vestidos",
+        nome: "Vestido Midi Glam",
+        preco: 189.90,
+        imagem: "https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=900&q=80"
+      },
+      {
+        id: 2,
+        categoria: "blusas",
+        nome: "Blusa Cetim Dourado",
+        preco: 119.90,
+        imagem: "https://images.unsplash.com/photo-1496747611176-843222e1e57c?auto=format&fit=crop&w=900&q=80"
+      },
+      {
+        id: 3,
+        categoria: "calcas",
+        nome: "Calça Alfaiataria Preta",
+        preco: 159.90,
+        imagem: "https://images.unsplash.com/photo-1541099649105-f69ad21f3246?auto=format&fit=crop&w=900&q=80"
+      },
+      {
+        id: 4,
+        categoria: "saias",
+        nome: "Saia Elegance",
+        preco: 129.90,
+        imagem: "https://images.unsplash.com/photo-1583496661160-fb5886a13d77?auto=format&fit=crop&w=900&q=80"
+      },
+      {
+        id: 5,
+        categoria: "blazers",
+        nome: "Blazer Noite Premium",
+        preco: 249.90,
+        imagem: "https://images.unsplash.com/photo-1591369822096-ffd140ec948f?auto=format&fit=crop&w=900&q=80"
+      },
+      {
+        id: 6,
+        categoria: "vestidos",
+        nome: "Vestido Longo Luxo",
+        preco: 329.90,
+        imagem: "https://images.unsplash.com/photo-1566174053879-31528523f8ae?auto=format&fit=crop&w=900&q=80"
+      },
+      {
+        id: 7,
+        categoria: "blusas",
+        nome: "Cropped Shine",
+        preco: 69.90,
+        imagem: "https://images.unsplash.com/photo-1483985988355-763728e1935b?auto=format&fit=crop&w=900&q=80"
+      },
+      {
+        id: 8,
+        categoria: "conjuntos",
+        nome: "Conjunto Glam Preto",
+        preco: 279.90,
+        imagem: "https://images.unsplash.com/photo-1529139574466-a303027c1d8b?auto=format&fit=crop&w=900&q=80"
+      }
+    ];
 
-carrinho.forEach(p=>{
-texto += `- ${p.nome} (R$ ${p.preco})%0A`;
-});
+    let carrinho = [];
+    let categoriaAtual = "todos";
 
-window.open(`https://wa.me/SEUNUMEROAQUI?text=${texto}`);
-}
+    function formatarPreco(valor){
+      return valor.toFixed(2).replace(".", ",");
+    }
 
-render();
-</script>
+    function capitalizar(texto){
+      return texto.charAt(0).toUpperCase() + texto.slice(1);
+    }
 
+    function renderProdutos(){
+      const container = document.getElementById("products");
+      container.innerHTML = "";
+
+      const filtrados = categoriaAtual === "todos"
+        ? produtos
+        : produtos.filter(p => p.categoria === categoriaAtual);
+
+      filtrados.forEach(produto => {
+        container.innerHTML += `
+          <article class="card">
+            <div class="card-media">
+              <span class="badge">${capitalizar(produto.categoria)}</span>
+              <img src="${produto.imagem}" alt="${produto.nome}">
+              <div class="glow-line"></div>
+            </div>
+            <div class="card-body">
+              <h3 class="card-title">${produto.nome}</h3>
+              <p class="price">R$ ${formatarPreco(produto.preco)}</p>
+              <div class="card-actions">
+                <button class="product-btn" onclick="adicionarCarrinho(${produto.id})">Adicionar</button>
+                <button class="buy-btn" onclick="toggleCart(); adicionarCarrinho(${produto.id})">Comprar</button>
+              </div>
+            </div>
+          </article>
+        `;
+      });
+    }
+
+    function filtrar(categoria, botao){
+      categoriaAtual = categoria;
+      document.querySelectorAll(".filter-btn").forEach(btn => btn.classList.remove("active"));
+      botao.classList.add("active");
+      renderProdutos();
+    }
+
+    function adicionarCarrinho(id){
+      const produto = produtos.find(p => p.id === id);
+      carrinho.push(produto);
+      renderCarrinho();
+    }
+
+    function renderCarrinho(){
+      const cartItems = document.getElementById("cartItems");
+      const totalEl = document.getElementById("cartTotal");
+
+      if(carrinho.length === 0){
+        cartItems.innerHTML = `<p style="color:#b8ae9c;">Seu carrinho está vazio.</p>`;
+        totalEl.innerText = "0,00";
+        return;
+      }
+
+      cartItems.innerHTML = "";
+      let total = 0;
+
+      carrinho.forEach((item, index) => {
+        total += item.preco;
+        cartItems.innerHTML += `
+          <div class="cart-item">
+            <strong>${item.nome}</strong>
+            <span style="color:#b8ae9c;">R$ ${formatarPreco(item.preco)}</span><br>
+            <button class="remove-btn" onclick="removerItem(${index})">Remover</button>
+          </div>
+        `;
+      });
+
+      totalEl.innerText = formatarPreco(total);
+    }
+
+    function removerItem(index){
+      carrinho.splice(index, 1);
+      renderCarrinho();
+    }
+
+    function toggleCart(){
+      document.getElementById("cart").classList.toggle("active");
+    }
+
+    function finalizarCompra(){
+      if(carrinho.length === 0){
+        alert("Seu carrinho está vazio.");
+        return;
+      }
+
+      let mensagem = "Olá, quero comprar na MAVIEN:%0A";
+      let total = 0;
+
+      carrinho.forEach(item => {
+        mensagem += `- ${item.nome} | R$ ${formatarPreco(item.preco)}%0A`;
+        total += item.preco;
+      });
+
+      mensagem += `%0ATotal: R$ ${formatarPreco(total)}`;
+      window.open(`https://wa.me/5500000000000?text=${mensagem}`, "_blank");
+    }
+
+    renderProdutos();
+    renderCarrinho();
+  </script>
 </body>
 </html>
