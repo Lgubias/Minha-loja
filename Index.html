@@ -1,56 +1,757 @@
 <!DOCTYPE html>
-<html>
+<html lang="pt-BR">
 <head>
-<title>MAVIEN</title>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<style>
-body {
-  margin:0;
-  background:black;
-  color:white;
-  font-family:sans-serif;
-  text-align:center;
-}
-h1 {
-  color:gold;
-  margin-top:40px;
-}
-.btn {
-  background:gold;
-  color:black;
-  padding:15px;
-  display:inline-block;
-  margin:20px;
-  text-decoration:none;
-  font-weight:bold;
-}
-.grid {
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:10px;
-  padding:20px;
-}
-img {
-  width:100%;
-}
-</style>
-</head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MAVIEN | Moda feminina</title>
+  <meta name="description" content="MAVIEN - Moda feminina elegante, sofisticada e com atendimento pelo WhatsApp." />
+  <style>
+    :root {
+      --bg: #070707;
+      --bg-soft: #111111;
+      --card: #141414;
+      --gold: #d4af37;
+      --gold-soft: #f0d57a;
+      --text: #f7f4ea;
+      --muted: #cfc7b0;
+      --line: rgba(212, 175, 55, 0.24);
+      --shadow: 0 18px 50px rgba(0,0,0,0.35);
+      --radius: 24px;
+      --max: 1180px;
+    }
 
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background:
+        radial-gradient(circle at top, rgba(212,175,55,0.07), transparent 28%),
+        linear-gradient(180deg, #060606 0%, #0c0c0c 100%);
+      color: var(--text);
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    .container {
+      width: min(var(--max), calc(100% - 32px));
+      margin: 0 auto;
+    }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      backdrop-filter: blur(12px);
+      background: rgba(7,7,7,0.82);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .topbar-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      padding: 16px 0;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .brand-mark {
+      width: 48px;
+      height: 48px;
+      border: 1px solid var(--gold);
+      display: grid;
+      place-items: center;
+      color: var(--gold-soft);
+      font-weight: bold;
+      font-size: 24px;
+      box-shadow: inset 0 0 0 1px rgba(212,175,55,0.2);
+    }
+
+    .brand-text {
+      line-height: 1;
+    }
+
+    .brand-text strong {
+      display: block;
+      color: var(--gold-soft);
+      letter-spacing: 0.18em;
+      font-size: 1.1rem;
+    }
+
+    .brand-text span {
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    .nav {
+      display: flex;
+      gap: 18px;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .nav a {
+      color: var(--muted);
+      font-size: 0.96rem;
+    }
+
+    .nav a:hover {
+      color: var(--gold-soft);
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 14px 22px;
+      border-radius: 999px;
+      font-weight: bold;
+      transition: 0.2s ease;
+      border: 1px solid transparent;
+      cursor: pointer;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--gold-soft), var(--gold));
+      color: #161616;
+      box-shadow: 0 10px 26px rgba(212,175,55,0.22);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+    }
+
+    .btn-outline {
+      border-color: var(--line);
+      color: var(--text);
+      background: rgba(255,255,255,0.02);
+    }
+
+    .btn-outline:hover {
+      border-color: var(--gold);
+      color: var(--gold-soft);
+    }
+
+    .hero {
+      padding: 68px 0 36px;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.08fr 0.92fr;
+      gap: 28px;
+      align-items: stretch;
+    }
+
+    .hero-copy,
+    .hero-media {
+      border: 1px solid var(--line);
+      border-radius: calc(var(--radius) + 6px);
+      overflow: hidden;
+      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      box-shadow: var(--shadow);
+    }
+
+    .hero-copy {
+      padding: 42px;
+      position: relative;
+    }
+
+    .eyebrow {
+      display: inline-block;
+      color: var(--gold-soft);
+      font-weight: bold;
+      letter-spacing: 0.18em;
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+
+    h1 {
+      margin: 0 0 16px;
+      font-size: clamp(2.2rem, 5vw, 4.7rem);
+      line-height: 0.95;
+      letter-spacing: 0.04em;
+      color: #f6e7af;
+      text-shadow: 0 0 24px rgba(212,175,55,0.12);
+    }
+
+    .hero-copy p {
+      font-size: 1.08rem;
+      line-height: 1.7;
+      color: var(--muted);
+      max-width: 620px;
+      margin-bottom: 26px;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+    }
+
+    .hero-tags {
+      margin-top: 28px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .tag {
+      padding: 10px 14px;
+      border-radius: 999px;
+      background: rgba(212,175,55,0.08);
+      color: #f4df97;
+      border: 1px solid rgba(212,175,55,0.18);
+      font-size: 0.92rem;
+    }
+
+    .hero-media {
+      min-height: 520px;
+      background:
+        linear-gradient(180deg, rgba(0,0,0,0.15), rgba(0,0,0,0.55)),
+        url('https://images.unsplash.com/photo-1529139574466-a303027c1d8b?auto=format&fit=crop&w=1200&q=80') center/cover no-repeat;
+      position: relative;
+    }
+
+    .hero-floating {
+      position: absolute;
+      left: 22px;
+      right: 22px;
+      bottom: 22px;
+      display: grid;
+      gap: 12px;
+    }
+
+    .floating-card {
+      background: rgba(8,8,8,0.82);
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      padding: 16px 18px;
+      backdrop-filter: blur(10px);
+    }
+
+    .floating-card strong {
+      display: block;
+      color: var(--gold-soft);
+      margin-bottom: 4px;
+    }
+
+    section {
+      padding: 34px 0;
+    }
+
+    .section-head {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 18px;
+      margin-bottom: 22px;
+    }
+
+    .section-head h2 {
+      margin: 0;
+      font-size: clamp(1.6rem, 3vw, 2.5rem);
+      color: #f6e7af;
+    }
+
+    .section-head p {
+      margin: 8px 0 0;
+      color: var(--muted);
+      max-width: 700px;
+      line-height: 1.6;
+    }
+
+    .categories {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 18px;
+    }
+
+    .category {
+      background: linear-gradient(180deg, rgba(212,175,55,0.06), rgba(255,255,255,0.015));
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 22px;
+      text-align: center;
+      box-shadow: var(--shadow);
+    }
+
+    .category-icon {
+      width: 72px;
+      height: 72px;
+      margin: 0 auto 14px;
+      border-radius: 50%;
+      border: 1px solid rgba(212,175,55,0.3);
+      display: grid;
+      place-items: center;
+      font-size: 1.7rem;
+      color: var(--gold-soft);
+      background: rgba(212,175,55,0.06);
+    }
+
+    .category h3 {
+      margin: 0 0 8px;
+      color: var(--text);
+      font-size: 1.1rem;
+    }
+
+    .category p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.55;
+      font-size: 0.94rem;
+    }
+
+    .sale-banner {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 20px;
+      border: 1px solid var(--line);
+      border-radius: calc(var(--radius) + 8px);
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(212,175,55,0.035));
+    }
+
+    .sale-copy {
+      padding: 34px;
+    }
+
+    .sale-copy h2 {
+      margin: 0 0 14px;
+      font-size: clamp(1.8rem, 3vw, 2.8rem);
+      color: #f4dc8f;
+    }
+
+    .sale-copy p {
+      color: var(--muted);
+      line-height: 1.7;
+    }
+
+    .sale-list {
+      margin: 18px 0 0;
+      padding: 0;
+      list-style: none;
+      display: grid;
+      gap: 12px;
+    }
+
+    .sale-list li {
+      border: 1px solid rgba(212,175,55,0.12);
+      background: rgba(255,255,255,0.02);
+      border-radius: 16px;
+      padding: 14px 16px;
+      color: var(--text);
+    }
+
+    .sale-media {
+      min-height: 100%;
+      background:
+        linear-gradient(180deg, rgba(0,0,0,0.15), rgba(0,0,0,0.45)),
+        url('https://images.unsplash.com/photo-1483985988355-763728e1935b?auto=format&fit=crop&w=1200&q=80') center/cover no-repeat;
+    }
+
+    .products {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .product {
+      background: linear-gradient(180deg, rgba(255,255,255,0.025), rgba(255,255,255,0.01));
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: var(--shadow);
+    }
+
+    .product-media {
+      aspect-ratio: 4 / 5;
+      background: #111;
+    }
+
+    .product-media img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .product-body {
+      padding: 18px;
+    }
+
+    .product-body h3 {
+      margin: 0 0 8px;
+      color: var(--text);
+      font-size: 1.06rem;
+    }
+
+    .product-body p {
+      margin: 0 0 14px;
+      color: var(--muted);
+      font-size: 0.95rem;
+      line-height: 1.55;
+    }
+
+    .price {
+      display: inline-block;
+      color: #161616;
+      background: linear-gradient(135deg, var(--gold-soft), var(--gold));
+      font-weight: bold;
+      padding: 10px 14px;
+      border-radius: 999px;
+      margin-bottom: 14px;
+    }
+
+    .cta-box {
+      border: 1px solid var(--line);
+      border-radius: calc(var(--radius) + 8px);
+      overflow: hidden;
+      background:
+        linear-gradient(180deg, rgba(212,175,55,0.08), rgba(255,255,255,0.02));
+      box-shadow: var(--shadow);
+    }
+
+    .cta-inner {
+      padding: 34px;
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 20px;
+      align-items: center;
+    }
+
+    .cta-inner h2 {
+      margin: 0 0 10px;
+      color: #f4dc8f;
+      font-size: clamp(1.8rem, 3vw, 2.6rem);
+    }
+
+    .cta-inner p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.7;
+    }
+
+    footer {
+      padding: 34px 0 60px;
+    }
+
+    .footer-card {
+      border-top: 1px solid var(--line);
+      padding-top: 24px;
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      flex-wrap: wrap;
+      color: var(--muted);
+    }
+
+    .footer-card strong {
+      color: var(--gold-soft);
+      display: block;
+      margin-bottom: 8px;
+    }
+
+    @media (max-width: 980px) {
+      .hero-grid,
+      .sale-banner,
+      .cta-inner,
+      .products,
+      .categories {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .hero-media {
+        min-height: 420px;
+      }
+    }
+
+    @media (max-width: 720px) {
+      .nav {
+        display: none;
+      }
+
+      .hero-grid,
+      .sale-banner,
+      .cta-inner,
+      .products,
+      .categories {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-copy,
+      .sale-copy,
+      .cta-inner {
+        padding: 24px;
+      }
+
+      .topbar-inner {
+        align-items: flex-start;
+      }
+
+      .brand-text strong {
+        font-size: 1rem;
+      }
+    }
+  </style>
+</head>
 <body>
 
-<h1>MAVIEN</h1>
-<p>Moda feminina elegante</p>
+  <header class="topbar">
+    <div class="container topbar-inner">
+      <div class="brand">
+        <div class="brand-mark">M</div>
+        <div class="brand-text">
+          <strong>MAVIEN</strong>
+          <span>Moda feminina</span>
+        </div>
+      </div>
 
-<a class="btn" href="https://wa.me/55SEUNUMERO">
-Comprar no WhatsApp
-</a>
+      <nav class="nav">
+        <a href="#inicio">Início</a>
+        <a href="#categorias">Categorias</a>
+        <a href="#ofertas">Ofertas</a>
+        <a href="#vitrine">Vitrine</a>
+        <a href="#contato">Contato</a>
+      </nav>
 
-<div class="grid">
+      <a class="btn btn-primary" href="https://wa.me/5500000000000?text=Olá,%20quero%20comprar%20na%20MAVIEN">
+        WhatsApp
+      </a>
+    </div>
+  </header>
 
-<img src="https://via.placeholder.com/300">
-<img src="https://via.placeholder.com/300">
+  <main id="inicio">
+    <section class="hero">
+      <div class="container hero-grid">
+        <div class="hero-copy">
+          <span class="eyebrow">Elegância • atitude • exclusividade</span>
+          <h1>MAVIEN</h1>
+          <p>
+            Moda feminina com identidade marcante, estilo sofisticado e peças selecionadas
+            para quem quer se vestir bem com presença, elegância e personalidade.
+          </p>
 
-</div>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="https://wa.me/5500000000000?text=Olá,%20quero%20ver%20as%20novidades%20da%20MAVIEN">
+              Comprar pelo WhatsApp
+            </a>
+            <a class="btn btn-outline" href="#vitrine">
+              Ver vitrine
+            </a>
+          </div>
+
+          <div class="hero-tags">
+            <span class="tag">✨ Peças novas e selecionadas</span>
+            <span class="tag">🔥 Ofertas especiais</span>
+            <span class="tag">🖤 Atendimento rápido</span>
+          </div>
+        </div>
+
+        <div class="hero-media">
+          <div class="hero-floating">
+            <div class="floating-card">
+              <strong>Estilo com presença</strong>
+              Looks que valorizam sua imagem com elegância e feminilidade.
+            </div>
+            <div class="floating-card">
+              <strong>Compra fácil</strong>
+              Escolha sua peça e finalize pelo WhatsApp de forma rápida.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="categorias">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <span class="eyebrow">Categorias em destaque</span>
+            <h2>Compre por estilo</h2>
+            <p>
+              Uma vitrine organizada para facilitar sua escolha e manter a cara sofisticada da MAVIEN.
+            </p>
+          </div>
+        </div>
+
+        <div class="categories">
+          <article class="category">
+            <div class="category-icon">👗</div>
+            <h3>Vestidos</h3>
+            <p>Modelos femininos e elegantes para ocasiões especiais e looks marcantes.</p>
+          </article>
+
+          <article class="category">
+            <div class="category-icon">✨</div>
+            <h3>Paetê</h3>
+            <p>Peças com brilho, presença e estilo para destacar sua produção.</p>
+          </article>
+
+          <article class="category">
+            <div class="category-icon">👖</div>
+            <h3>Jeans</h3>
+            <p>Versatilidade e caimento para combinar com produções casuais e sofisticadas.</p>
+          </article>
+
+          <article class="category">
+            <div class="category-icon">🔥</div>
+            <h3>Promoções</h3>
+            <p>Achados especiais, valores reduzidos e oportunidades por tempo limitado.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="ofertas">
+      <div class="container">
+        <div class="sale-banner">
+          <div class="sale-copy">
+            <span class="eyebrow">Oportunidade especial</span>
+            <h2>Peças com valores reduzidos</h2>
+            <p>
+              Aproveite seleções especiais da MAVIEN com preços atrativos, sem perder a identidade
+              elegante e sofisticada da loja.
+            </p>
+
+            <ul class="sale-list">
+              <li>✔ Peças lindas com excelente apresentação</li>
+              <li>✔ Quantidade limitada em itens selecionados</li>
+              <li>✔ Atendimento direto e rápido pelo WhatsApp</li>
+            </ul>
+
+            <div style="margin-top:20px;">
+              <a class="btn btn-primary" href="https://wa.me/5500000000000?text=Olá,%20quero%20aproveitar%20as%20ofertas%20da%20MAVIEN">
+                Quero ver as ofertas
+              </a>
+            </div>
+          </div>
+
+          <div class="sale-media"></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="vitrine">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <span class="eyebrow">Vitrine da loja</span>
+            <h2>Peças em destaque</h2>
+            <p>
+              Aqui você pode trocar por fotos reais dos seus produtos. Por enquanto deixei uma base bonita e organizada.
+            </p>
+          </div>
+        </div>
+
+        <div class="products">
+          <article class="product">
+            <div class="product-media">
+              <img src="https://images.unsplash.com/photo-1529139574466-a303027c1d8b?auto=format&fit=crop&w=900&q=80" alt="Vestido elegante" />
+            </div>
+            <div class="product-body">
+              <h3>Vestido Elegante</h3>
+              <p>Modelo feminino com presença, ótimo para ocasiões especiais e produções refinadas.</p>
+              <div class="price">R$ 89,90</div><br />
+              <a class="btn btn-outline" href="https://wa.me/5500000000000?text=Olá,%20quero%20informações%20sobre%20o%20Vestido%20Elegante">
+                Pedir no WhatsApp
+              </a>
+            </div>
+          </article>
+
+          <article class="product">
+            <div class="product-media">
+              <img src="https://images.unsplash.com/photo-1483985988355-763728e1935b?auto=format&fit=crop&w=900&q=80" alt="Look moderno" />
+            </div>
+            <div class="product-body">
+              <h3>Look Moderno</h3>
+              <p>Combinação estilosa para destacar sua imagem com atitude e sofisticação.</p>
+              <div class="price">R$ 69,90</div><br />
+              <a class="btn btn-outline" href="https://wa.me/5500000000000?text=Olá,%20quero%20informações%20sobre%20o%20Look%20Moderno">
+                Pedir no WhatsApp
+              </a>
+            </div>
+          </article>
+
+          <article class="product">
+            <div class="product-media">
+              <img src="https://images.unsplash.com/photo-1496747611176-843222e1e57c?auto=format&fit=crop&w=900&q=80" alt="Peça em destaque" />
+            </div>
+            <div class="product-body">
+              <h3>Peça Destaque</h3>
+              <p>Uma proposta delicada e elegante para elevar o visual com feminilidade.</p>
+              <div class="price">R$ 79,90</div><br />
+              <a class="btn btn-outline" href="https://wa.me/5500000000000?text=Olá,%20quero%20informações%20sobre%20a%20Peça%20Destaque">
+                Pedir no WhatsApp
+              </a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="contato">
+      <div class="container">
+        <div class="cta-box">
+          <div class="cta-inner">
+            <div>
+              <span class="eyebrow">Atendimento personalizado</span>
+              <h2>Compre direto com a MAVIEN</h2>
+              <p>
+                Escolha sua peça, tire dúvidas e finalize tudo com atendimento rápido e prático pelo WhatsApp.
+              </p>
+            </div>
+            <div style="display:flex; justify-content:center; align-items:center;">
+              <a class="btn btn-primary" href="https://wa.me/5500000000000?text=Olá,%20quero%20comprar%20na%20MAVIEN">
+                Falar no WhatsApp
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer-card">
+      <div>
+        <strong>MAVIEN</strong>
+        <span>Moda feminina com elegância e personalidade.</span>
+      </div>
+
+      <div>
+        <strong>Instagram</strong>
+        <span>@mavien.mavia_</span>
+      </div>
+
+      <div>
+        <strong>Contato</strong>
+        <span>WhatsApp da loja</span>
+      </div>
+    </div>
+  </footer>
 
 </body>
 </html>
