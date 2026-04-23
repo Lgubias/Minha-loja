@@ -23,6 +23,7 @@
 
     *{box-sizing:border-box}
     html{scroll-behavior:smooth}
+
     body{
       margin:0;
       font-family: Arial, Helvetica, sans-serif;
@@ -63,25 +64,23 @@
       gap:14px;
     }
 
-    .brand-mark{
-      width:48px;
-      height:48px;
-      border-radius:50%;
-      border:1px solid var(--gold);
-      display:grid;
-      place-items:center;
-      color:var(--gold-soft);
-      font-family: Georgia, "Times New Roman", serif;
-      font-size:1.5rem;
-      box-shadow:0 0 20px var(--gold-glow), inset 0 0 14px rgba(201,166,75,.12);
+    .brand-logo{
+      width:56px;
+      height:56px;
+      object-fit:contain;
+      border-radius:10px;
+      box-shadow:0 0 20px rgba(201,166,75,.16);
+      background:#000;
     }
 
     .brand-text strong{
       display:block;
       font-family: Georgia, "Times New Roman", serif;
+      letter-spacing:.24em;
       color:var(--gold-soft);
-      font-size:1.4rem;
-      letter-spacing:.14em;
+      font-size:1.12rem;
+      font-weight:500;
+      text-transform:uppercase;
     }
 
     .brand-text span{
@@ -99,6 +98,7 @@
     .menu-link{
       color:var(--muted);
       font-size:.95rem;
+      letter-spacing:.03em;
     }
 
     .menu-link:hover{
@@ -134,17 +134,24 @@
 
     .hero-overlay{
       padding:56px;
-      max-width:700px;
+      max-width:760px;
+    }
+
+    .hero-logo{
+      width:130px;
+      max-width:40vw;
+      margin-bottom:18px;
+      filter:drop-shadow(0 0 18px rgba(201,166,75,.18));
     }
 
     .eyebrow{
       display:inline-block;
       text-transform:uppercase;
-      letter-spacing:.24em;
+      letter-spacing:.28em;
       color:var(--gold-soft);
       font-size:.78rem;
       font-weight:700;
-      margin-bottom:18px;
+      margin-bottom:16px;
       text-shadow:0 0 14px rgba(201,166,75,.28);
     }
 
@@ -154,13 +161,15 @@
       font-size:clamp(2.5rem, 6vw, 5rem);
       line-height:.95;
       font-weight:500;
-      color:#fff7de;
+      letter-spacing:.04em;
+      color:#fff6da;
       text-shadow:0 0 24px rgba(201,166,75,.16);
+      text-transform:uppercase;
     }
 
     .hero p{
       margin:0 0 24px;
-      max-width:560px;
+      max-width:580px;
       color:#e6dcc8;
       font-size:1.08rem;
       line-height:1.75;
@@ -231,7 +240,10 @@
       font-family: Georgia, "Times New Roman", serif;
       font-weight:500;
       font-size:clamp(1.8rem, 4vw, 2.8rem);
+      line-height:1.1;
       color:#fff2c9;
+      letter-spacing:.03em;
+      text-transform:uppercase;
     }
 
     .section-head p{
@@ -303,6 +315,8 @@
       border-radius:999px;
       font-size:.78rem;
       backdrop-filter:blur(8px);
+      text-transform:uppercase;
+      letter-spacing:.08em;
     }
 
     .glow-line{
@@ -321,7 +335,7 @@
 
     .card-title{
       margin:0 0 8px;
-      font-size:1.04rem;
+      font-size:1.02rem;
       color:var(--text);
     }
 
@@ -378,9 +392,12 @@
     .luxury-copy h3{
       margin:0 0 12px;
       font-family: Georgia, "Times New Roman", serif;
-      font-size:2.2rem;
+      font-size:2.1rem;
+      line-height:1.15;
       font-weight:500;
       color:#fff2c9;
+      letter-spacing:.03em;
+      text-transform:uppercase;
     }
 
     .luxury-copy p{
@@ -409,7 +426,7 @@
       min-height:100%;
       background:
         linear-gradient(180deg, rgba(0,0,0,.18), rgba(0,0,0,.4)),
-        url('https://images.unsplash.com/photo-1529139574466-a303027c1d8b?auto=format&fit=crop&w=1200&q=80') center/cover no-repeat;
+        url('sale-story-1.jpg') center/cover no-repeat;
     }
 
     .contact-box{
@@ -431,6 +448,8 @@
       font-size:1.8rem;
       font-weight:500;
       color:#fff2c9;
+      letter-spacing:.03em;
+      text-transform:uppercase;
     }
 
     .contact-box p{
@@ -481,6 +500,8 @@
       font-size:1.3rem;
       font-family: Georgia, "Times New Roman", serif;
       font-weight:500;
+      text-transform:uppercase;
+      letter-spacing:.03em;
     }
 
     .close-cart{
@@ -574,10 +595,13 @@
         min-height:440px;
       }
       .brand-text strong{
-        font-size:1.1rem;
+        font-size:1rem;
       }
       .menu-link{
         display:none;
+      }
+      .hero-logo{
+        width:100px;
       }
     }
   </style>
@@ -587,7 +611,7 @@
   <header>
     <div class="container header-inner">
       <div class="brand">
-        <div class="brand-mark">M</div>
+        <img class="brand-logo" src="logo-mavien.png" alt="Logo Mavien">
         <div class="brand-text">
           <strong>MAVIEN</strong>
           <span>Moda feminina sofisticada</span>
@@ -607,8 +631,9 @@
     <div class="container">
       <div class="hero-box">
         <div class="hero-overlay">
+          <img class="hero-logo" src="logo-mavien.png" alt="Mavien">
           <span class="eyebrow">GLAMOUR • ELEGÂNCIA • PRESENÇA</span>
-          <h1>Nova coleção<br>MAVIEN</h1>
+          <h1>MAVIEN</h1>
           <p>
             Um catálogo sofisticado para mulheres que amam brilho, elegância
             e peças com presença. Explore a coleção, adicione ao carrinho
@@ -627,7 +652,7 @@
           <div class="hero-tags">
             <span class="tag">✨ Peças selecionadas</span>
             <span class="tag">🖤 Visual premium</span>
-            <span class="tag">👠 Atendimento rápido</span>
+            <span class="tag">🔥 Sale especial</span>
           </div>
         </div>
       </div>
@@ -661,16 +686,16 @@
     <div class="container">
       <div class="luxury-box">
         <div class="luxury-copy">
-          <h3>Sofisticação com identidade</h3>
+          <h3>Sale com brilho e sofisticação</h3>
           <p>
-            A MAVIEN foi pensada para transmitir elegância, brilho e feminilidade com força visual.
-            Este site une catálogo, carrinho e compra com uma estética marcante, escura e refinada.
+            A identidade visual da MAVIEN permanece forte: preto, dourado, luxo,
+            brilho discreto e comunicação elegante, sem mexer no layout que já estava funcionando bem.
           </p>
 
           <ul class="luxury-list">
-            <li>✔ Catálogo organizado por categorias</li>
-            <li>✔ Carrinho lateral elegante e funcional</li>
-            <li>✔ Compra simplificada via WhatsApp</li>
+            <li>✔ Estrutura premium preservada</li>
+            <li>✔ Logo real da marca aplicado</li>
+            <li>✔ Tipografia mais próxima do Instagram</li>
           </ul>
         </div>
         <div class="luxury-media"></div>
@@ -754,20 +779,6 @@
       },
       {
         id: 6,
-        categoria: "vestidos",
-        nome: "Vestido Longo Luxo",
-        preco: 329.90,
-        imagem: "https://images.unsplash.com/photo-1566174053879-31528523f8ae?auto=format&fit=crop&w=900&q=80"
-      },
-      {
-        id: 7,
-        categoria: "blusas",
-        nome: "Cropped Shine",
-        preco: 69.90,
-        imagem: "https://images.unsplash.com/photo-1483985988355-763728e1935b?auto=format&fit=crop&w=900&q=80"
-      },
-      {
-        id: 8,
         categoria: "conjuntos",
         nome: "Conjunto Glam Preto",
         preco: 279.90,
