@@ -1,900 +1,275 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>MAVIEN | Loja</title>
-  <style>
-    :root{
-      --bg:#060606;
-      --bg-soft:#0f0f10;
-      --bg-card:#121214;
-      --gold:#c9a64b;
-      --gold-soft:#f1d98a;
-      --gold-glow:rgba(201,166,75,.25);
-      --text:#f6f1e8;
-      --muted:#b8ae9c;
-      --line:rgba(201,166,75,.22);
-      --shadow:0 16px 40px rgba(0,0,0,.35);
-      --radius:22px;
-      --max:1200px;
-      --success:#25D366;
-    }
-
-    *{box-sizing:border-box}
-    html{scroll-behavior:smooth}
-
-    body{
-      margin:0;
-      font-family: Arial, Helvetica, sans-serif;
-      background:
-        radial-gradient(circle at top, rgba(201,166,75,.08), transparent 24%),
-        linear-gradient(180deg, #050505 0%, #0b0b0c 100%);
-      color:var(--text);
-    }
-
-    a{text-decoration:none;color:inherit}
-    img{display:block;max-width:100%}
-
-    .container{
-      width:min(var(--max), calc(100% - 32px));
-      margin:0 auto;
-    }
-
-    header{
-      position:sticky;
-      top:0;
-      z-index:30;
-      backdrop-filter:blur(14px);
-      background:rgba(8,8,8,.82);
-      border-bottom:1px solid var(--line);
-    }
-
-    .header-inner{
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:16px;
-      padding:18px 0;
-    }
-
-    .brand{
-      display:flex;
-      align-items:center;
-      gap:14px;
-    }
-
-    .brand-logo{
-      width:56px;
-      height:56px;
-      object-fit:contain;
-      border-radius:10px;
-      box-shadow:0 0 20px rgba(201,166,75,.16);
-      background:#000;
-    }
-
-    .brand-text strong{
-      display:block;
-      font-family: Georgia, "Times New Roman", serif;
-      letter-spacing:.24em;
-      color:var(--gold-soft);
-      font-size:1.12rem;
-      font-weight:500;
-      text-transform:uppercase;
-    }
-
-    .brand-text span{
-      color:var(--muted);
-      font-size:.9rem;
-    }
-
-    .header-right{
-      display:flex;
-      align-items:center;
-      gap:12px;
-      flex-wrap:wrap;
-    }
-
-    .menu-link{
-      color:var(--muted);
-      font-size:.95rem;
-      letter-spacing:.03em;
-    }
-
-    .menu-link:hover{
-      color:var(--gold-soft);
-    }
-
-    .cart-toggle{
-      border:none;
-      background:linear-gradient(135deg, var(--gold-soft), var(--gold));
-      color:#171717;
-      border-radius:999px;
-      padding:12px 18px;
-      cursor:pointer;
-      font-weight:700;
-      box-shadow:0 10px 26px rgba(201,166,75,.18);
-    }
-
-    .hero{
-      padding:78px 0 34px;
-    }
-
-    .hero-box{
-      min-height:520px;
-      border:1px solid var(--line);
-      border-radius:32px;
-      overflow:hidden;
-      position:relative;
-      box-shadow:var(--shadow);
-      background:
-        linear-gradient(180deg, rgba(0,0,0,.28), rgba(0,0,0,.62)),
-        url('https://images.unsplash.com/photo-1483985988355-763728e1935b?auto=format&fit=crop&w=1400&q=80') center/cover no-repeat;
-    }
-
-    .hero-overlay{
-      padding:56px;
-      max-width:760px;
-    }
-
-    .hero-logo{
-      width:130px;
-      max-width:40vw;
-      margin-bottom:18px;
-      filter:drop-shadow(0 0 18px rgba(201,166,75,.18));
-    }
-
-    .eyebrow{
-      display:inline-block;
-      text-transform:uppercase;
-      letter-spacing:.28em;
-      color:var(--gold-soft);
-      font-size:.78rem;
-      font-weight:700;
-      margin-bottom:16px;
-      text-shadow:0 0 14px rgba(201,166,75,.28);
-    }
-
-    .hero h1{
-      margin:0 0 14px;
-      font-family: Georgia, "Times New Roman", serif;
-      font-size:clamp(2.5rem, 6vw, 5rem);
-      line-height:.95;
-      font-weight:500;
-      letter-spacing:.04em;
-      color:#fff6da;
-      text-shadow:0 0 24px rgba(201,166,75,.16);
-      text-transform:uppercase;
-    }
-
-    .hero p{
-      margin:0 0 24px;
-      max-width:580px;
-      color:#e6dcc8;
-      font-size:1.08rem;
-      line-height:1.75;
-    }
-
-    .hero-actions{
-      display:flex;
-      flex-wrap:wrap;
-      gap:12px;
-      margin-bottom:24px;
-    }
-
-    .btn{
-      border:none;
-      border-radius:999px;
-      padding:14px 22px;
-      cursor:pointer;
-      font-weight:700;
-      transition:.2s ease;
-    }
-
-    .btn-gold{
-      background:linear-gradient(135deg, var(--gold-soft), var(--gold));
-      color:#191919;
-      box-shadow:0 10px 28px rgba(201,166,75,.2);
-    }
-
-    .btn-gold:hover,
-    .btn-dark:hover,
-    .product-btn:hover,
-    .buy-btn:hover,
-    .checkout-btn:hover{
-      transform:translateY(-2px);
-    }
-
-    .btn-dark{
-      background:rgba(255,255,255,.06);
-      color:#fff7de;
-      border:1px solid var(--line);
-    }
-
-    .hero-tags{
-      display:flex;
-      flex-wrap:wrap;
-      gap:10px;
-    }
-
-    .tag{
-      padding:10px 14px;
-      border-radius:999px;
-      border:1px solid rgba(201,166,75,.18);
-      background:rgba(9,9,9,.38);
-      color:var(--gold-soft);
-      font-size:.92rem;
-      backdrop-filter:blur(8px);
-    }
-
-    .section{
-      padding:36px 0;
-    }
-
-    .section-head{
-      margin-bottom:20px;
-    }
-
-    .section-head h2{
-      margin:0 0 8px;
-      font-family: Georgia, "Times New Roman", serif;
-      font-weight:500;
-      font-size:clamp(1.8rem, 4vw, 2.8rem);
-      line-height:1.1;
-      color:#fff2c9;
-      letter-spacing:.03em;
-      text-transform:uppercase;
-    }
-
-    .section-head p{
-      margin:0;
-      color:var(--muted);
-      line-height:1.7;
-      max-width:760px;
-    }
-
-    .filters{
-      display:flex;
-      flex-wrap:wrap;
-      gap:10px;
-      margin-top:18px;
-    }
-
-    .filter-btn{
-      border:1px solid var(--line);
-      background:rgba(255,255,255,.03);
-      color:var(--muted);
-      padding:12px 18px;
-      border-radius:999px;
-      cursor:pointer;
-      font-weight:700;
-    }
-
-    .filter-btn.active{
-      background:linear-gradient(135deg, var(--gold-soft), var(--gold));
-      color:#171717;
-      box-shadow:0 8px 20px rgba(201,166,75,.18);
-    }
-
-    .products{
-      display:grid;
-      grid-template-columns:repeat(4,1fr);
-      gap:18px;
-      margin-top:26px;
-    }
-
-    .card{
-      background:linear-gradient(180deg, rgba(255,255,255,.025), rgba(255,255,255,.01));
-      border:1px solid var(--line);
-      border-radius:22px;
-      overflow:hidden;
-      box-shadow:var(--shadow);
-    }
-
-    .card-media{
-      height:320px;
-      position:relative;
-      overflow:hidden;
-      background:#0c0c0d;
-    }
-
-    .card-media img{
-      width:100%;
-      height:100%;
-      object-fit:cover;
-    }
-
-    .badge{
-      position:absolute;
-      top:12px;
-      left:12px;
-      background:rgba(0,0,0,.62);
-      color:var(--gold-soft);
-      border:1px solid rgba(201,166,75,.22);
-      padding:8px 12px;
-      border-radius:999px;
-      font-size:.78rem;
-      backdrop-filter:blur(8px);
-      text-transform:uppercase;
-      letter-spacing:.08em;
-    }
-
-    .glow-line{
-      position:absolute;
-      left:0;
-      right:0;
-      bottom:0;
-      height:2px;
-      background:linear-gradient(90deg, transparent, var(--gold), transparent);
-      box-shadow:0 0 18px rgba(201,166,75,.35);
-    }
-
-    .card-body{
-      padding:18px;
-    }
-
-    .card-title{
-      margin:0 0 8px;
-      font-size:1.02rem;
-      color:var(--text);
-    }
-
-    .price{
-      margin:0 0 14px;
-      font-family: Georgia, "Times New Roman", serif;
-      font-size:1.5rem;
-      color:var(--gold-soft);
-      text-shadow:0 0 14px rgba(201,166,75,.12);
-    }
-
-    .card-actions{
-      display:flex;
-      gap:10px;
-    }
-
-    .product-btn,
-    .buy-btn{
-      flex:1;
-      border:none;
-      padding:12px 14px;
-      border-radius:12px;
-      cursor:pointer;
-      font-weight:700;
-    }
-
-    .product-btn{
-      background:#1b1b1d;
-      color:#fff;
-      border:1px solid rgba(255,255,255,.06);
-    }
-
-    .buy-btn{
-      background:linear-gradient(135deg, var(--gold-soft), var(--gold));
-      color:#171717;
-    }
-
-    .luxury-box{
-      display:grid;
-      grid-template-columns:1.1fr .9fr;
-      gap:20px;
-      border:1px solid var(--line);
-      border-radius:30px;
-      overflow:hidden;
-      box-shadow:var(--shadow);
-      background:
-        linear-gradient(180deg, rgba(255,255,255,.025), rgba(255,255,255,.01));
-    }
-
-    .luxury-copy{
-      padding:34px;
-    }
-
-    .luxury-copy h3{
-      margin:0 0 12px;
-      font-family: Georgia, "Times New Roman", serif;
-      font-size:2.1rem;
-      line-height:1.15;
-      font-weight:500;
-      color:#fff2c9;
-      letter-spacing:.03em;
-      text-transform:uppercase;
-    }
-
-    .luxury-copy p{
-      margin:0;
-      color:var(--muted);
-      line-height:1.8;
-    }
-
-    .luxury-list{
-      list-style:none;
-      padding:0;
-      margin:18px 0 0;
-      display:grid;
-      gap:10px;
-    }
-
-    .luxury-list li{
-      padding:14px 16px;
-      border:1px solid rgba(201,166,75,.14);
-      border-radius:16px;
-      background:rgba(255,255,255,.02);
-      color:#ebe1cf;
-    }
-
-    .luxury-media{
-      min-height:100%;
-      background:
-        linear-gradient(180deg, rgba(0,0,0,.18), rgba(0,0,0,.4)),
-        url('sale-story-1.jpg') center/cover no-repeat;
-    }
-
-    .contact-box{
-      background:linear-gradient(180deg, rgba(255,255,255,.025), rgba(255,255,255,.01));
-      border:1px solid var(--line);
-      border-radius:24px;
-      padding:26px;
-      display:flex;
-      justify-content:space-between;
-      gap:20px;
-      align-items:center;
-      flex-wrap:wrap;
-      box-shadow:var(--shadow);
-    }
-
-    .contact-box h3{
-      margin:0 0 8px;
-      font-family: Georgia, "Times New Roman", serif;
-      font-size:1.8rem;
-      font-weight:500;
-      color:#fff2c9;
-      letter-spacing:.03em;
-      text-transform:uppercase;
-    }
-
-    .contact-box p{
-      margin:0;
-      color:var(--muted);
-    }
-
-    footer{
-      padding:34px 0 54px;
-      text-align:center;
-      color:var(--muted);
-      border-top:1px solid rgba(201,166,75,.1);
-      margin-top:20px;
-    }
-
-    /* carrinho */
-    .cart{
-      position:fixed;
-      top:0;
-      right:-390px;
-      width:370px;
-      max-width:100%;
-      height:100vh;
-      background:#0c0c0d;
-      border-left:1px solid var(--line);
-      box-shadow:-16px 0 34px rgba(0,0,0,.35);
-      transition:.3s ease;
-      z-index:100;
-      display:flex;
-      flex-direction:column;
-    }
-
-    .cart.active{
-      right:0;
-    }
-
-    .cart-head{
-      padding:22px 20px;
-      border-bottom:1px solid var(--line);
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-    }
-
-    .cart-head h3{
-      margin:0;
-      color:#fff2c9;
-      font-size:1.3rem;
-      font-family: Georgia, "Times New Roman", serif;
-      font-weight:500;
-      text-transform:uppercase;
-      letter-spacing:.03em;
-    }
-
-    .close-cart{
-      border:none;
-      background:none;
-      font-size:1.5rem;
-      cursor:pointer;
-      color:var(--muted);
-    }
-
-    .cart-body{
-      padding:18px 20px;
-      overflow:auto;
-      flex:1;
-    }
-
-    .cart-item{
-      border-bottom:1px solid rgba(201,166,75,.12);
-      padding:0 0 14px;
-      margin-bottom:14px;
-    }
-
-    .cart-item strong{
-      display:block;
-      margin-bottom:6px;
-      color:var(--text);
-    }
-
-    .remove-btn{
-      margin-top:8px;
-      border:none;
-      background:#18181a;
-      color:var(--gold-soft);
-      padding:9px 12px;
-      border-radius:10px;
-      cursor:pointer;
-    }
-
-    .cart-footer{
-      border-top:1px solid var(--line);
-      padding:20px;
-      background:#111113;
-    }
-
-    .cart-total{
-      display:flex;
-      justify-content:space-between;
-      font-weight:700;
-      margin-bottom:14px;
-      color:#fff2c9;
-    }
-
-    .checkout-btn{
-      width:100%;
-      border:none;
-      background:var(--success);
-      color:white;
-      padding:14px;
-      border-radius:14px;
-      cursor:pointer;
-      font-weight:700;
-      font-size:1rem;
-    }
-
-    @media (max-width: 1080px){
-      .products{
-        grid-template-columns:repeat(3,1fr);
-      }
-    }
-
-    @media (max-width: 860px){
-      .products{
-        grid-template-columns:repeat(2,1fr);
-      }
-      .luxury-box{
-        grid-template-columns:1fr;
-      }
-      .luxury-media{
-        min-height:280px;
-      }
-    }
-
-    @media (max-width: 640px){
-      .products{
-        grid-template-columns:1fr;
-      }
-      .hero-overlay{
-        padding:28px;
-      }
-      .hero-box{
-        min-height:440px;
-      }
-      .brand-text strong{
-        font-size:1rem;
-      }
-      .menu-link{
-        display:none;
-      }
-      .hero-logo{
-        width:100px;
-      }
-    }
-  </style>
-</head>
-<body>
-
-  <header>
-    <div class="container header-inner">
-      <div class="brand">
-        <img class="brand-logo" src="logo-mavien.png" alt="Logo Mavien">
-        <div class="brand-text">
-          <strong>MAVIEN</strong>
-          <span>Moda feminina sofisticada</span>
-        </div>
-      </div>
-
-      <div class="header-right">
-        <a class="menu-link" href="#catalogo">Catálogo</a>
-        <a class="menu-link" href="#destaque">Destaque</a>
-        <a class="menu-link" href="#contato">Contato</a>
-        <button class="cart-toggle" onclick="toggleCart()">Carrinho 🛒</button>
-      </div>
-    </div>
-  </header>
-
-  <section class="hero">
-    <div class="container">
-      <div class="hero-box">
-        <div class="hero-overlay">
-          <img class="hero-logo" src="logo-mavien.png" alt="Mavien">
-          <span class="eyebrow">GLAMOUR • ELEGÂNCIA • PRESENÇA</span>
-          <h1>MAVIEN</h1>
-          <p>
-            Um catálogo sofisticado para mulheres que amam brilho, elegância
-            e peças com presença. Explore a coleção, adicione ao carrinho
-            e finalize sua compra com praticidade.
-          </p>
-
-          <div class="hero-actions">
-            <button class="btn btn-gold" onclick="document.getElementById('catalogo').scrollIntoView({behavior:'smooth'})">
-              Ver catálogo
-            </button>
-            <button class="btn btn-dark" onclick="window.open('https://wa.me/5500000000000?text=Olá,%20quero%20atendimento%20da%20MAVIEN')">
-              Chamar no WhatsApp
-            </button>
-          </div>
-
-          <div class="hero-tags">
-            <span class="tag">✨ Peças selecionadas</span>
-            <span class="tag">🖤 Visual premium</span>
-            <span class="tag">🔥 Sale especial</span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="section" id="catalogo">
-    <div class="container">
-      <div class="section-head">
-        <h2>Catálogo da loja</h2>
-        <p>
-          Navegue pelas categorias, visualize as peças e monte seu carrinho com uma experiência elegante e prática.
-        </p>
-      </div>
-
-      <div class="filters">
-        <button class="filter-btn active" onclick="filtrar('todos', this)">Todos</button>
-        <button class="filter-btn" onclick="filtrar('vestidos', this)">Vestidos</button>
-        <button class="filter-btn" onclick="filtrar('blusas', this)">Blusas</button>
-        <button class="filter-btn" onclick="filtrar('calcas', this)">Calças</button>
-        <button class="filter-btn" onclick="filtrar('saias', this)">Saias</button>
-        <button class="filter-btn" onclick="filtrar('blazers', this)">Blazers</button>
-        <button class="filter-btn" onclick="filtrar('conjuntos', this)">Conjuntos</button>
-      </div>
-
-      <div class="products" id="products"></div>
-    </div>
-  </section>
-
-  <section class="section" id="destaque">
-    <div class="container">
-      <div class="luxury-box">
-        <div class="luxury-copy">
-          <h3>Sale com brilho e sofisticação</h3>
-          <p>
-            A identidade visual da MAVIEN permanece forte: preto, dourado, luxo,
-            brilho discreto e comunicação elegante, sem mexer no layout que já estava funcionando bem.
-          </p>
-
-          <ul class="luxury-list">
-            <li>✔ Estrutura premium preservada</li>
-            <li>✔ Logo real da marca aplicado</li>
-            <li>✔ Tipografia mais próxima do Instagram</li>
-          </ul>
-        </div>
-        <div class="luxury-media"></div>
-      </div>
-    </div>
-  </section>
-
-  <section class="section" id="contato">
-    <div class="container">
-      <div class="contact-box">
-        <div>
-          <h3>Atendimento MAVIEN</h3>
-          <p>Fale com a loja para dúvidas, combinações, medidas e pedidos.</p>
-        </div>
-        <button class="cart-toggle" onclick="window.open('https://wa.me/5500000000000?text=Olá,%20quero%20atendimento%20da%20MAVIEN')">
-          Falar no WhatsApp
-        </button>
-      </div>
-    </div>
-  </section>
-
-  <footer>
-    MAVIEN • Moda feminina • Elegância com glamour
-  </footer>
-
-  <aside class="cart" id="cart">
-    <div class="cart-head">
-      <h3>Seu carrinho</h3>
-      <button class="close-cart" onclick="toggleCart()">×</button>
-    </div>
-
-    <div class="cart-body" id="cartItems">
-      <p style="color:#b8ae9c;">Seu carrinho está vazio.</p>
-    </div>
-
-    <div class="cart-footer">
-      <div class="cart-total">
-        <span>Total</span>
-        <span>R$ <span id="cartTotal">0,00</span></span>
-      </div>
-      <button class="checkout-btn" onclick="finalizarCompra()">Comprar no WhatsApp</button>
-    </div>
-  </aside>
-
-  <script>
-    const produtos = [
-      {
-        id: 1,
-        categoria: "vestidos",
-        nome: "Vestido Midi Glam",
-        preco: 189.90,
-        imagem: "https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=900&q=80"
-      },
-      {
-        id: 2,
-        categoria: "blusas",
-        nome: "Blusa Cetim Dourado",
-        preco: 119.90,
-        imagem: "https://images.unsplash.com/photo-1496747611176-843222e1e57c?auto=format&fit=crop&w=900&q=80"
-      },
-      {
-        id: 3,
-        categoria: "calcas",
-        nome: "Calça Alfaiataria Preta",
-        preco: 159.90,
-        imagem: "https://images.unsplash.com/photo-1541099649105-f69ad21f3246?auto=format&fit=crop&w=900&q=80"
-      },
-      {
-        id: 4,
-        categoria: "saias",
-        nome: "Saia Elegance",
-        preco: 129.90,
-        imagem: "https://images.unsplash.com/photo-1583496661160-fb5886a13d77?auto=format&fit=crop&w=900&q=80"
-      },
-      {
-        id: 5,
-        categoria: "blazers",
-        nome: "Blazer Noite Premium",
-        preco: 249.90,
-        imagem: "https://images.unsplash.com/photo-1591369822096-ffd140ec948f?auto=format&fit=crop&w=900&q=80"
-      },
-      {
-        id: 6,
-        categoria: "conjuntos",
-        nome: "Conjunto Glam Preto",
-        preco: 279.90,
-        imagem: "https://images.unsplash.com/photo-1529139574466-a303027c1d8b?auto=format&fit=crop&w=900&q=80"
-      }
-    ];
-
-    let carrinho = [];
-    let categoriaAtual = "todos";
-
-    function formatarPreco(valor){
-      return valor.toFixed(2).replace(".", ",");
-    }
-
-    function capitalizar(texto){
-      return texto.charAt(0).toUpperCase() + texto.slice(1);
-    }
-
-    function renderProdutos(){
-      const container = document.getElementById("products");
-      container.innerHTML = "";
-
-      const filtrados = categoriaAtual === "todos"
-        ? produtos
-        : produtos.filter(p => p.categoria === categoriaAtual);
-
-      filtrados.forEach(produto => {
-        container.innerHTML += `
-          <article class="card">
-            <div class="card-media">
-              <span class="badge">${capitalizar(produto.categoria)}</span>
-              <img src="${produto.imagem}" alt="${produto.nome}">
-              <div class="glow-line"></div>
-            </div>
-            <div class="card-body">
-              <h3 class="card-title">${produto.nome}</h3>
-              <p class="price">R$ ${formatarPreco(produto.preco)}</p>
-              <div class="card-actions">
-                <button class="product-btn" onclick="adicionarCarrinho(${produto.id})">Adicionar</button>
-                <button class="buy-btn" onclick="toggleCart(); adicionarCarrinho(${produto.id})">Comprar</button>
-              </div>
-            </div>
-          </article>
-        `;
-      });
-    }
-
-    function filtrar(categoria, botao){
-      categoriaAtual = categoria;
-      document.querySelectorAll(".filter-btn").forEach(btn => btn.classList.remove("active"));
-      botao.classList.add("active");
-      renderProdutos();
-    }
-
-    function adicionarCarrinho(id){
-      const produto = produtos.find(p => p.id === id);
-      carrinho.push(produto);
-      renderCarrinho();
-    }
-
-    function renderCarrinho(){
-      const cartItems = document.getElementById("cartItems");
-      const totalEl = document.getElementById("cartTotal");
-
-      if(carrinho.length === 0){
-        cartItems.innerHTML = `<p style="color:#b8ae9c;">Seu carrinho está vazio.</p>`;
-        totalEl.innerText = "0,00";
-        return;
-      }
-
-      cartItems.innerHTML = "";
-      let total = 0;
-
-      carrinho.forEach((item, index) => {
-        total += item.preco;
-        cartItems.innerHTML += `
-          <div class="cart-item">
-            <strong>${item.nome}</strong>
-            <span style="color:#b8ae9c;">R$ ${formatarPreco(item.preco)}</span><br>
-            <button class="remove-btn" onclick="removerItem(${index})">Remover</button>
-          </div>
-        `;
-      });
-
-      totalEl.innerText = formatarPreco(total);
-    }
-
-    function removerItem(index){
-      carrinho.splice(index, 1);
-      renderCarrinho();
-    }
-
-    function toggleCart(){
-      document.getElementById("cart").classList.toggle("active");
-    }
-
-    function finalizarCompra(){
-      if(carrinho.length === 0){
-        alert("Seu carrinho está vazio.");
-        return;
-      }
-
-      let mensagem = "Olá, quero comprar na MAVIEN:%0A";
-      let total = 0;
-
-      carrinho.forEach(item => {
-        mensagem += `- ${item.nome} | R$ ${formatarPreco(item.preco)}%0A`;
-        total += item.preco;
-      });
-
-      mensagem += `%0ATotal: R$ ${formatarPreco(total)}`;
-      window.open(`https://wa.me/5500000000000?text=${mensagem}`, "_blank");
-    }
-
-    renderProdutos();
-    renderCarrinho();
-  </script>
-</body>
-</html>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MAVIEN | Loja</title>
+
+<style>
+:root{
+  --gold:#d6b56d;
+  --gold2:#f6e1a3;
+  --black:#050505;
+  --text:#fff4d8;
+  --muted:#c9bfae;
+  --line:rgba(214,181,109,.28);
+}
+
+*{box-sizing:border-box}
+
+body{
+  margin:0;
+  background:#050505;
+  color:white;
+  font-family:Arial, sans-serif;
+}
+
+.container{
+  width:min(1200px, calc(100% - 32px));
+  margin:auto;
+}
+
+header{
+  background:rgba(0,0,0,.9);
+  border-bottom:1px solid var(--line);
+  position:sticky;
+  top:0;
+  z-index:10;
+}
+
+.header-inner{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:16px 0;
+}
+
+.logo-area{
+  display:flex;
+  align-items:center;
+  gap:14px;
+}
+
+.logo-area img{
+  width:70px;
+  height:70px;
+  object-fit:contain;
+}
+
+.logo-area strong{
+  font-family:Georgia, serif;
+  letter-spacing:.22em;
+  color:var(--gold2);
+  font-size:1.3rem;
+}
+
+nav{
+  display:flex;
+  gap:16px;
+  align-items:center;
+}
+
+nav a{
+  color:var(--muted);
+  text-decoration:none;
+}
+
+button{
+  cursor:pointer;
+}
+
+.gold-btn{
+  border:none;
+  border-radius:999px;
+  padding:13px 22px;
+  font-weight:bold;
+  background:linear-gradient(135deg,var(--gold2),var(--gold));
+  color:#111;
+}
+
+.dark-btn{
+  border:1px solid var(--line);
+  border-radius:999px;
+  padding:13px 22px;
+  background:rgba(255,255,255,.06);
+  color:white;
+  font-weight:bold;
+}
+
+.hero{
+  padding:50px 0 30px;
+}
+
+.hero-box{
+  min-height:650px;
+  border-radius:34px;
+  overflow:hidden;
+  border:1px solid var(--line);
+  background:
+    linear-gradient(180deg, rgba(0,0,0,.12), rgba(0,0,0,.7)),
+    url("foto-inicio.jpg") center 18%/cover no-repeat;
+  display:flex;
+  align-items:center;
+}
+
+.hero-content{
+  padding:50px;
+  max-width:720px;
+}
+
+.hero-content img{
+  width:160px;
+  margin-bottom:18px;
+}
+
+.eyebrow{
+  color:var(--gold2);
+  letter-spacing:.28em;
+  font-weight:bold;
+  font-size:.78rem;
+}
+
+h1{
+  font-family:Georgia, serif;
+  font-size:clamp(3rem, 7vw, 6rem);
+  letter-spacing:.09em;
+  color:var(--gold2);
+  margin:14px 0;
+}
+
+.hero p{
+  max-width:600px;
+  color:#f4e8cf;
+  line-height:1.8;
+  font-size:1.1rem;
+}
+
+.actions{
+  display:flex;
+  gap:12px;
+  flex-wrap:wrap;
+  margin-top:24px;
+}
+
+.section{
+  padding:40px 0;
+}
+
+.section h2{
+  font-family:Georgia, serif;
+  font-size:2.4rem;
+  color:var(--gold2);
+  text-transform:uppercase;
+}
+
+.section p{
+  color:var(--muted);
+}
+
+.filters{
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+  margin:22px 0;
+}
+
+.filter-btn{
+  border:1px solid var(--line);
+  background:#111;
+  color:var(--muted);
+  border-radius:999px;
+  padding:11px 18px;
+  font-weight:bold;
+}
+
+.filter-btn.active{
+  background:linear-gradient(135deg,var(--gold2),var(--gold));
+  color:#111;
+}
+
+.products{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:18px;
+}
+
+.card{
+  background:#101010;
+  border:1px solid var(--line);
+  border-radius:22px;
+  overflow:hidden;
+}
+
+.card-media{
+  height:330px;
+  background:#111;
+  position:relative;
+}
+
+.card-media img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  object-position:center 18%;
+}
+
+.badge{
+  position:absolute;
+  top:12px;
+  left:12px;
+  background:rgba(0,0,0,.7);
+  color:var(--gold2);
+  border:1px solid var(--line);
+  padding:8px 12px;
+  border-radius:999px;
+  font-size:.75rem;
+}
+
+.card-body{
+  padding:18px;
+}
+
+.card h3{
+  margin:0 0 8px;
+}
+
+.price{
+  font-family:Georgia, serif;
+  color:var(--gold2);
+  font-size:1.4rem;
+}
+
+.card-actions{
+  display:flex;
+  gap:10px;
+}
+
+.card-actions button{
+  flex:1;
+  border:none;
+  border-radius:12px;
+  padding:12px;
+  font-weight:bold;
+}
+
+.add-btn{
+  background:#1b1b1b;
+  color:white;
+}
+
+.buy-btn{
+  background:linear-gradient(135deg,var(--gold2),var(--gold));
+  color:#111;
+}
+
+.final-box{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  border:1px solid var(--line);
+  border-radius:30px;
+  overflow:hidden;
+  background:#101010;
+}
+
+.final-text{
+  padding:
