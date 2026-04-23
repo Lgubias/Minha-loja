@@ -23,7 +23,6 @@
 
     *{box-sizing:border-box}
     html{scroll-behavior:smooth}
-
     body{
       margin:0;
       font-family: Arial, Helvetica, sans-serif;
@@ -64,23 +63,25 @@
       gap:14px;
     }
 
-    .brand-logo{
-      width:56px;
-      height:56px;
-      object-fit:contain;
-      border-radius:10px;
-      box-shadow:0 0 20px rgba(201,166,75,.16);
-      background:#000;
+    .brand-mark{
+      width:48px;
+      height:48px;
+      border-radius:50%;
+      border:1px solid var(--gold);
+      display:grid;
+      place-items:center;
+      color:var(--gold-soft);
+      font-family: Georgia, "Times New Roman", serif;
+      font-size:1.5rem;
+      box-shadow:0 0 20px var(--gold-glow), inset 0 0 14px rgba(201,166,75,.12);
     }
 
     .brand-text strong{
       display:block;
       font-family: Georgia, "Times New Roman", serif;
-      letter-spacing:.24em;
       color:var(--gold-soft);
-      font-size:1.12rem;
-      font-weight:500;
-      text-transform:uppercase;
+      font-size:1.4rem;
+      letter-spacing:.14em;
     }
 
     .brand-text span{
@@ -98,7 +99,6 @@
     .menu-link{
       color:var(--muted);
       font-size:.95rem;
-      letter-spacing:.03em;
     }
 
     .menu-link:hover{
@@ -134,24 +134,17 @@
 
     .hero-overlay{
       padding:56px;
-      max-width:760px;
-    }
-
-    .hero-logo{
-      width:130px;
-      max-width:40vw;
-      margin-bottom:18px;
-      filter:drop-shadow(0 0 18px rgba(201,166,75,.18));
+      max-width:700px;
     }
 
     .eyebrow{
       display:inline-block;
       text-transform:uppercase;
-      letter-spacing:.28em;
+      letter-spacing:.24em;
       color:var(--gold-soft);
       font-size:.78rem;
       font-weight:700;
-      margin-bottom:16px;
+      margin-bottom:18px;
       text-shadow:0 0 14px rgba(201,166,75,.28);
     }
 
@@ -161,15 +154,13 @@
       font-size:clamp(2.5rem, 6vw, 5rem);
       line-height:.95;
       font-weight:500;
-      letter-spacing:.04em;
-      color:#fff6da;
+      color:#fff7de;
       text-shadow:0 0 24px rgba(201,166,75,.16);
-      text-transform:uppercase;
     }
 
     .hero p{
       margin:0 0 24px;
-      max-width:580px;
+      max-width:560px;
       color:#e6dcc8;
       font-size:1.08rem;
       line-height:1.75;
@@ -240,10 +231,7 @@
       font-family: Georgia, "Times New Roman", serif;
       font-weight:500;
       font-size:clamp(1.8rem, 4vw, 2.8rem);
-      line-height:1.1;
       color:#fff2c9;
-      letter-spacing:.03em;
-      text-transform:uppercase;
     }
 
     .section-head p{
@@ -315,8 +303,6 @@
       border-radius:999px;
       font-size:.78rem;
       backdrop-filter:blur(8px);
-      text-transform:uppercase;
-      letter-spacing:.08em;
     }
 
     .glow-line{
@@ -335,7 +321,7 @@
 
     .card-title{
       margin:0 0 8px;
-      font-size:1.02rem;
+      font-size:1.04rem;
       color:var(--text);
     }
 
@@ -392,12 +378,9 @@
     .luxury-copy h3{
       margin:0 0 12px;
       font-family: Georgia, "Times New Roman", serif;
-      font-size:2.1rem;
-      line-height:1.15;
+      font-size:2.2rem;
       font-weight:500;
       color:#fff2c9;
-      letter-spacing:.03em;
-      text-transform:uppercase;
     }
 
     .luxury-copy p{
@@ -426,7 +409,7 @@
       min-height:100%;
       background:
         linear-gradient(180deg, rgba(0,0,0,.18), rgba(0,0,0,.4)),
-        url('sale-story-1.jpg') center/cover no-repeat;
+        url('https://images.unsplash.com/photo-1529139574466-a303027c1d8b?auto=format&fit=crop&w=1200&q=80') center/cover no-repeat;
     }
 
     .contact-box{
@@ -448,8 +431,6 @@
       font-size:1.8rem;
       font-weight:500;
       color:#fff2c9;
-      letter-spacing:.03em;
-      text-transform:uppercase;
     }
 
     .contact-box p{
@@ -500,8 +481,6 @@
       font-size:1.3rem;
       font-family: Georgia, "Times New Roman", serif;
       font-weight:500;
-      text-transform:uppercase;
-      letter-spacing:.03em;
     }
 
     .close-cart{
@@ -595,13 +574,10 @@
         min-height:440px;
       }
       .brand-text strong{
-        font-size:1rem;
+        font-size:1.1rem;
       }
       .menu-link{
         display:none;
-      }
-      .hero-logo{
-        width:100px;
       }
     }
   </style>
@@ -611,7 +587,7 @@
   <header>
     <div class="container header-inner">
       <div class="brand">
-        <img class="brand-logo" src="logo-mavien.png" alt="Logo Mavien">
+        <div class="brand-mark">M</div>
         <div class="brand-text">
           <strong>MAVIEN</strong>
           <span>Moda feminina sofisticada</span>
@@ -631,9 +607,8 @@
     <div class="container">
       <div class="hero-box">
         <div class="hero-overlay">
-          <img class="hero-logo" src="logo-mavien.png" alt="Mavien">
           <span class="eyebrow">GLAMOUR • ELEGÂNCIA • PRESENÇA</span>
-          <h1>MAVIEN</h1>
+          <h1>Nova coleção<br>MAVIEN</h1>
           <p>
             Um catálogo sofisticado para mulheres que amam brilho, elegância
             e peças com presença. Explore a coleção, adicione ao carrinho
@@ -652,7 +627,7 @@
           <div class="hero-tags">
             <span class="tag">✨ Peças selecionadas</span>
             <span class="tag">🖤 Visual premium</span>
-            <span class="tag">🔥 Sale especial</span>
+            <span class="tag">👠 Atendimento rápido</span>
           </div>
         </div>
       </div>
@@ -686,16 +661,16 @@
     <div class="container">
       <div class="luxury-box">
         <div class="luxury-copy">
-          <h3>Sale com brilho e sofisticação</h3>
+          <h3>Sofisticação com identidade</h3>
           <p>
-            A identidade visual da MAVIEN permanece forte: preto, dourado, luxo,
-            brilho discreto e comunicação elegante, sem mexer no layout que já estava funcionando bem.
+            A MAVIEN foi pensada para transmitir elegância, brilho e feminilidade com força visual.
+            Este site une catálogo, carrinho e compra com uma estética marcante, escura e refinada.
           </p>
 
           <ul class="luxury-list">
-            <li>✔ Estrutura premium preservada</li>
-            <li>✔ Logo real da marca aplicado</li>
-            <li>✔ Tipografia mais próxima do Instagram</li>
+            <li>✔ Catálogo organizado por categorias</li>
+            <li>✔ Carrinho lateral elegante e funcional</li>
+            <li>✔ Compra simplificada via WhatsApp</li>
           </ul>
         </div>
         <div class="luxury-media"></div>
@@ -708,4 +683,207 @@
       <div class="contact-box">
         <div>
           <h3>Atendimento MAVIEN</h3>
-          <p>Fale com a loja para dúvidas, combinações, medidas e pedidos.</
+          <p>Fale com a loja para dúvidas, combinações, medidas e pedidos.</p>
+        </div>
+        <button class="cart-toggle" onclick="window.open('https://wa.me/5500000000000?text=Olá,%20quero%20atendimento%20da%20MAVIEN')">
+          Falar no WhatsApp
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    MAVIEN • Moda feminina • Elegância com glamour
+  </footer>
+
+  <aside class="cart" id="cart">
+    <div class="cart-head">
+      <h3>Seu carrinho</h3>
+      <button class="close-cart" onclick="toggleCart()">×</button>
+    </div>
+
+    <div class="cart-body" id="cartItems">
+      <p style="color:#b8ae9c;">Seu carrinho está vazio.</p>
+    </div>
+
+    <div class="cart-footer">
+      <div class="cart-total">
+        <span>Total</span>
+        <span>R$ <span id="cartTotal">0,00</span></span>
+      </div>
+      <button class="checkout-btn" onclick="finalizarCompra()">Comprar no WhatsApp</button>
+    </div>
+  </aside>
+
+  <script>
+    const produtos = [
+      {
+        id: 1,
+        categoria: "vestidos",
+        nome: "Vestido Midi Glam",
+        preco: 189.90,
+        imagem: "https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=900&q=80"
+      },
+      {
+        id: 2,
+        categoria: "blusas",
+        nome: "Blusa Cetim Dourado",
+        preco: 119.90,
+        imagem: "https://images.unsplash.com/photo-1496747611176-843222e1e57c?auto=format&fit=crop&w=900&q=80"
+      },
+      {
+        id: 3,
+        categoria: "calcas",
+        nome: "Calça Alfaiataria Preta",
+        preco: 159.90,
+        imagem: "https://images.unsplash.com/photo-1541099649105-f69ad21f3246?auto=format&fit=crop&w=900&q=80"
+      },
+      {
+        id: 4,
+        categoria: "saias",
+        nome: "Saia Elegance",
+        preco: 129.90,
+        imagem: "https://images.unsplash.com/photo-1583496661160-fb5886a13d77?auto=format&fit=crop&w=900&q=80"
+      },
+      {
+        id: 5,
+        categoria: "blazers",
+        nome: "Blazer Noite Premium",
+        preco: 249.90,
+        imagem: "https://images.unsplash.com/photo-1591369822096-ffd140ec948f?auto=format&fit=crop&w=900&q=80"
+      },
+      {
+        id: 6,
+        categoria: "vestidos",
+        nome: "Vestido Longo Luxo",
+        preco: 329.90,
+        imagem: "https://images.unsplash.com/photo-1566174053879-31528523f8ae?auto=format&fit=crop&w=900&q=80"
+      },
+      {
+        id: 7,
+        categoria: "blusas",
+        nome: "Cropped Shine",
+        preco: 69.90,
+        imagem: "https://images.unsplash.com/photo-1483985988355-763728e1935b?auto=format&fit=crop&w=900&q=80"
+      },
+      {
+        id: 8,
+        categoria: "conjuntos",
+        nome: "Conjunto Glam Preto",
+        preco: 279.90,
+        imagem: "https://images.unsplash.com/photo-1529139574466-a303027c1d8b?auto=format&fit=crop&w=900&q=80"
+      }
+    ];
+
+    let carrinho = [];
+    let categoriaAtual = "todos";
+
+    function formatarPreco(valor){
+      return valor.toFixed(2).replace(".", ",");
+    }
+
+    function capitalizar(texto){
+      return texto.charAt(0).toUpperCase() + texto.slice(1);
+    }
+
+    function renderProdutos(){
+      const container = document.getElementById("products");
+      container.innerHTML = "";
+
+      const filtrados = categoriaAtual === "todos"
+        ? produtos
+        : produtos.filter(p => p.categoria === categoriaAtual);
+
+      filtrados.forEach(produto => {
+        container.innerHTML += `
+          <article class="card">
+            <div class="card-media">
+              <span class="badge">${capitalizar(produto.categoria)}</span>
+              <img src="${produto.imagem}" alt="${produto.nome}">
+              <div class="glow-line"></div>
+            </div>
+            <div class="card-body">
+              <h3 class="card-title">${produto.nome}</h3>
+              <p class="price">R$ ${formatarPreco(produto.preco)}</p>
+              <div class="card-actions">
+                <button class="product-btn" onclick="adicionarCarrinho(${produto.id})">Adicionar</button>
+                <button class="buy-btn" onclick="toggleCart(); adicionarCarrinho(${produto.id})">Comprar</button>
+              </div>
+            </div>
+          </article>
+        `;
+      });
+    }
+
+    function filtrar(categoria, botao){
+      categoriaAtual = categoria;
+      document.querySelectorAll(".filter-btn").forEach(btn => btn.classList.remove("active"));
+      botao.classList.add("active");
+      renderProdutos();
+    }
+
+    function adicionarCarrinho(id){
+      const produto = produtos.find(p => p.id === id);
+      carrinho.push(produto);
+      renderCarrinho();
+    }
+
+    function renderCarrinho(){
+      const cartItems = document.getElementById("cartItems");
+      const totalEl = document.getElementById("cartTotal");
+
+      if(carrinho.length === 0){
+        cartItems.innerHTML = `<p style="color:#b8ae9c;">Seu carrinho está vazio.</p>`;
+        totalEl.innerText = "0,00";
+        return;
+      }
+
+      cartItems.innerHTML = "";
+      let total = 0;
+
+      carrinho.forEach((item, index) => {
+        total += item.preco;
+        cartItems.innerHTML += `
+          <div class="cart-item">
+            <strong>${item.nome}</strong>
+            <span style="color:#b8ae9c;">R$ ${formatarPreco(item.preco)}</span><br>
+            <button class="remove-btn" onclick="removerItem(${index})">Remover</button>
+          </div>
+        `;
+      });
+
+      totalEl.innerText = formatarPreco(total);
+    }
+
+    function removerItem(index){
+      carrinho.splice(index, 1);
+      renderCarrinho();
+    }
+
+    function toggleCart(){
+      document.getElementById("cart").classList.toggle("active");
+    }
+
+    function finalizarCompra(){
+      if(carrinho.length === 0){
+        alert("Seu carrinho está vazio.");
+        return;
+      }
+
+      let mensagem = "Olá, quero comprar na MAVIEN:%0A";
+      let total = 0;
+
+      carrinho.forEach(item => {
+        mensagem += `- ${item.nome} | R$ ${formatarPreco(item.preco)}%0A`;
+        total += item.preco;
+      });
+
+      mensagem += `%0ATotal: R$ ${formatarPreco(total)}`;
+      window.open(`https://wa.me/5500000000000?text=${mensagem}`, "_blank");
+    }
+
+    renderProdutos();
+    renderCarrinho();
+  </script>
+</body>
+</html>
