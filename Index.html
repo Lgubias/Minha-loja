@@ -5,271 +5,747 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>MAVIEN | Loja</title>
 
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600&family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
+
 <style>
-:root{
-  --gold:#d6b56d;
-  --gold2:#f6e1a3;
-  --black:#050505;
-  --text:#fff4d8;
-  --muted:#c9bfae;
-  --line:rgba(214,181,109,.28);
-}
-
-*{box-sizing:border-box}
-
-body{
-  margin:0;
+  /* BAZAR */
+.bazar-section{
   background:#050505;
-  color:white;
-  font-family:Arial, sans-serif;
+  padding:70px 6% 65px;
+  border-top:1px solid rgba(212,175,55,.28);
+  border-bottom:1px solid rgba(212,175,55,.22);
 }
 
-.container{
-  width:min(1200px, calc(100% - 32px));
-  margin:auto;
+.bazar-title{
+  text-align:center;
+  margin-bottom:34px;
 }
 
-header{
-  background:rgba(0,0,0,.9);
-  border-bottom:1px solid var(--line);
-  position:sticky;
-  top:0;
-  z-index:10;
-}
-
-.header-inner{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  padding:16px 0;
-}
-
-.logo-area{
-  display:flex;
-  align-items:center;
-  gap:14px;
-}
-
-.logo-area img{
-  width:70px;
-  height:70px;
-  object-fit:contain;
-}
-
-.logo-area strong{
-  font-family:Georgia, serif;
-  letter-spacing:.22em;
-  color:var(--gold2);
-  font-size:1.3rem;
-}
-
-nav{
-  display:flex;
-  gap:16px;
-  align-items:center;
-}
-
-nav a{
-  color:var(--muted);
-  text-decoration:none;
-}
-
-button{
-  cursor:pointer;
-}
-
-.gold-btn{
-  border:none;
-  border-radius:999px;
-  padding:13px 22px;
-  font-weight:bold;
-  background:linear-gradient(135deg,var(--gold2),var(--gold));
-  color:#111;
-}
-
-.dark-btn{
-  border:1px solid var(--line);
-  border-radius:999px;
-  padding:13px 22px;
-  background:rgba(255,255,255,.06);
-  color:white;
-  font-weight:bold;
-}
-
-.hero{
-  padding:50px 0 30px;
-}
-
-.hero-box{
-  min-height:650px;
-  border-radius:34px;
-  overflow:hidden;
-  border:1px solid var(--line);
-  background:
-    linear-gradient(180deg, rgba(0,0,0,.12), rgba(0,0,0,.7)),
-    url("foto-inicio.jpg") center 18%/cover no-repeat;
-  display:flex;
-  align-items:center;
-}
-
-.hero-content{
-  padding:50px;
-  max-width:720px;
-}
-
-.hero-content img{
-  width:160px;
-  margin-bottom:18px;
-}
-
-.eyebrow{
-  color:var(--gold2);
-  letter-spacing:.28em;
-  font-weight:bold;
-  font-size:.78rem;
-}
-
-h1{
-  font-family:Georgia, serif;
-  font-size:clamp(3rem, 7vw, 6rem);
-  letter-spacing:.09em;
-  color:var(--gold2);
-  margin:14px 0;
-}
-
-.hero p{
-  max-width:600px;
-  color:#f4e8cf;
-  line-height:1.8;
-  font-size:1.1rem;
-}
-
-.actions{
-  display:flex;
-  gap:12px;
-  flex-wrap:wrap;
-  margin-top:24px;
-}
-
-.section{
-  padding:40px 0;
-}
-
-.section h2{
-  font-family:Georgia, serif;
-  font-size:2.4rem;
-  color:var(--gold2);
+.bazar-title small{
+  color:#d4af37;
   text-transform:uppercase;
+  letter-spacing:3px;
+  font-size:13px;
+  font-weight:700;
 }
 
-.section p{
-  color:var(--muted);
+.bazar-title h2{
+  font-family:'Playfair Display',serif;
+  color:#f4e8cf;
+  font-size:48px;
+  margin:8px 0;
 }
 
-.filters{
-  display:flex;
-  flex-wrap:wrap;
-  gap:10px;
-  margin:22px 0;
+.bazar-title p{
+  color:#d8cfbd;
+  font-size:15px;
 }
 
-.filter-btn{
-  border:1px solid var(--line);
-  background:#111;
-  color:var(--muted);
-  border-radius:999px;
-  padding:11px 18px;
-  font-weight:bold;
-}
-
-.filter-btn.active{
-  background:linear-gradient(135deg,var(--gold2),var(--gold));
-  color:#111;
-}
-
-.products{
+.bazar-grid{
   display:grid;
   grid-template-columns:repeat(4,1fr);
-  gap:18px;
+  gap:20px;
 }
 
-.card{
+.bazar-card{
   background:#101010;
-  border:1px solid var(--line);
-  border-radius:22px;
+  border:1px solid rgba(212,175,55,.32);
+  border-radius:16px;
   overflow:hidden;
-}
-
-.card-media{
-  height:330px;
-  background:#111;
   position:relative;
 }
 
-.card-media img{
-  width:100%;
-  height:100%;
-  object-fit:cover;
-  object-position:center 18%;
-}
-
-.badge{
+.bazar-tag{
   position:absolute;
   top:12px;
   left:12px;
-  background:rgba(0,0,0,.7);
-  color:var(--gold2);
-  border:1px solid var(--line);
-  padding:8px 12px;
-  border-radius:999px;
-  font-size:.75rem;
-}
-
-.card-body{
-  padding:18px;
-}
-
-.card h3{
-  margin:0 0 8px;
-}
-
-.price{
-  font-family:Georgia, serif;
-  color:var(--gold2);
-  font-size:1.4rem;
-}
-
-.card-actions{
-  display:flex;
-  gap:10px;
-}
-
-.card-actions button{
-  flex:1;
-  border:none;
-  border-radius:12px;
-  padding:12px;
-  font-weight:bold;
-}
-
-.add-btn{
-  background:#1b1b1b;
-  color:white;
-}
-
-.buy-btn{
-  background:linear-gradient(135deg,var(--gold2),var(--gold));
+  background:#d4af37;
   color:#111;
+  font-size:11px;
+  padding:6px 10px;
+  border-radius:999px;
+  font-weight:700;
 }
 
-.final-box{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  border:1px solid var(--line);
-  border-radius:30px;
-  overflow:hidden;
-  background:#101010;
+.bazar-img{
+  height:260px;
 }
 
-.final-text{
-  padding:
+.bazar-img img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
+
+.bazar-info{
+  padding:14px;
+  text-align:center;
+}
+
+.bazar-price{
+  color:#d4af37;
+  font-size:22px;
+  margin:10px 0;
+}
+
+@media(max-width:600px){
+  .bazar-grid{
+    grid-template-columns:repeat(2,1fr);
+  }
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:#080808;color:#fff;font-family:'Montserrat',sans-serif}
+button{cursor:pointer;font-family:inherit}
+
+.badge{display:inline-block;padding:6px 10px;border-radius:999px;font-size:11px;font-weight:700;margin-bottom:8px}
+.badge.estoque{background:#25D366;color:#fff}
+.badge.encomenda{background:#d4af37;color:#111}
+
+header{height:110px;background:#050505;border-bottom:1px solid rgba(212,175,55,.22);display:flex;align-items:center;justify-content:space-between;padding:0 6%;position:sticky;top:0;z-index:100}
+.menu-btn,.cart-icon{background:none;border:none;color:#d4af37;font-size:34px}
+.header-logo img{height:80px;object-fit:contain}
+
+.side-menu{position:fixed;top:0;left:-330px;width:320px;height:100vh;background:#050505;border-right:1px solid rgba(212,175,55,.28);z-index:300;padding:28px 28px 40px;transition:.3s;overflow-y:auto}
+.side-menu.active{left:0}
+.close-menu{background:none;border:none;color:white;font-size:34px;float:right}
+.side-logo{clear:both;text-align:center;padding:65px 0 35px}
+.side-logo img{width:150px}
+.side-links{display:flex;flex-direction:column;gap:24px;margin-bottom:34px}
+.side-links a,.side-links button{color:#f4e8cf;background:none;border:none;text-align:left;font-size:20px;text-decoration:none}
+.side-divider{height:1px;background:#d4af37;opacity:.75;margin:32px 0}
+.side-title{color:#d4af37;font-size:14px;font-weight:700;letter-spacing:4px;margin-bottom:20px}
+.category-list{display:flex;flex-direction:column}
+.category-list button{width:100%;background:none;border:none;border-bottom:1px solid rgba(212,175,55,.16);color:#f4e8cf;font-size:19px;padding:15px 0;display:flex;justify-content:space-between;align-items:center}
+.category-list button span{color:#d4af37;font-size:24px}
+
+.hero{height:calc(100vh - 110px);background:linear-gradient(rgba(0,0,0,.15),rgba(0,0,0,.90)),url('capa-mavien.jpg') center center/cover no-repeat;display:flex;align-items:flex-end;justify-content:center;text-align:center;padding:40px 20px 90px}
+.hero-content{display:flex;flex-direction:column;align-items:center}
+.hero-content img{width:240px;max-width:75%;margin-bottom:24px;filter:drop-shadow(0 0 18px rgba(212,175,55,.28))}
+.hero p{color:#fff;font-size:22px;margin-bottom:16px}
+.hero p strong{color:#fff;font-weight:400}
+.gold-btn{background:#d4af37;color:#111;border:none;border-radius:999px;padding:16px 40px;font-weight:700;font-size:15px;margin-top:4px}
+
+.section{padding:70px 6% 60px}
+.section-title{text-align:center;margin-bottom:18px}
+.section-title small{color:#d4af37;font-weight:700;letter-spacing:2px;text-transform:uppercase}
+.section-title h2{font-family:'Playfair Display',serif;color:#fff;font-size:76px;font-weight:500;margin-top:8px;line-height:1}
+.decor-line{width:330px;height:1px;background:linear-gradient(90deg,transparent,#d4af37,transparent);margin:28px auto 0;position:relative}
+.decor-line::after{content:"◆";position:absolute;left:50%;top:50%;transform:translate(-50%,-52%);color:#d4af37;background:#080808;padding:0 14px;font-size:13px}
+
+.catalog-controls{display:flex;justify-content:space-between;align-items:flex-start;gap:18px;margin:26px auto 36px;width:100%}
+.dropdown{position:relative;width:280px}
+.dropdown.right{margin-left:auto;text-align:right}
+.dropdown label{display:block;color:#f4e8cf;font-size:15px;margin-bottom:8px}
+.dropdown.right label{text-align:right}
+.dropdown-btn{width:100%;padding:13px 16px;background:#0d0d0d;color:#f4e8cf;border:1px solid rgba(212,175,55,.65);border-radius:12px;font-size:14px;text-align:left;display:flex;justify-content:space-between;align-items:center}
+.dropdown-menu{display:none;position:absolute;top:58px;width:100%;background:rgba(15,15,15,.97);backdrop-filter:blur(6px);border:1px solid rgba(212,175,55,.45);border-radius:12px;overflow:hidden;z-index:999;box-shadow:0 18px 40px rgba(0,0,0,.5)}
+.dropdown.left .dropdown-menu{left:0}
+.dropdown.right .dropdown-menu{right:0}
+.dropdown-menu.active{display:block}
+.dropdown-menu button{width:100%;padding:13px 16px;background:transparent;color:#f4e8cf;border:none;border-bottom:1px solid rgba(212,175,55,.16);text-align:left;font-size:14px}
+.dropdown-menu button:hover{background:#1a1a1a;color:#d4af37}
+
+.products{display:grid;grid-template-columns:repeat(4,1fr);gap:22px}
+.product{background:#111;border:1px solid rgba(212,175,55,.18);border-radius:15px;overflow:hidden}
+.product-img{height:300px;background:#191919}
+.product-img img{width:100%;height:100%;object-fit:cover;object-position:center top}
+.product-info{padding:16px;text-align:center}
+.product-info small{color:#d4af37;font-weight:700;font-size:11px;letter-spacing:1.4px;text-transform:uppercase}
+.product-info h3{font-size:16px;margin:8px 0}
+.product-info p{color:#bdb7aa;font-size:13px;line-height:1.45;margin-bottom:10px}
+.price{font-family:'Playfair Display',serif;color:#d4af37;font-size:24px;margin-bottom:12px}
+.product-info button{width:100%;background:#d4af37;color:#111;border:none;border-radius:999px;padding:12px;font-weight:700}
+.product-info .cart-add{margin-top:8px;background:#111;color:#d4af37;border:1px solid rgba(212,175,55,.5)}
+
+.pagination{display:flex;justify-content:center;align-items:center;gap:12px;margin-top:42px;flex-wrap:wrap}
+.pagination button{width:42px;height:42px;border-radius:50%;border:1px solid rgba(212,175,55,.55);background:#0d0d0d;color:#d4af37;font-weight:700;font-size:15px}
+.pagination button.active{background:#d4af37;color:#111}
+
+.destaque-slider{padding:95px 6% 90px;text-align:center}
+.destaque-title h2{font-family:'Playfair Display',serif;font-weight:500;line-height:1.12;font-size:42px}
+.destaque-title .light{color:#f4e8cf;display:block}
+.destaque-title .gold{color:#d4af37;display:block}
+.slider{position:relative;width:min(86vw,820px);height:520px;margin:42px auto 0;border-radius:26px;overflow:hidden;border:1px solid rgba(212,175,55,.28);background:#111}
+.slide{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center center;opacity:0;transition:opacity 1s ease}
+.slide.active{opacity:1}
+.slider-dots{display:flex;justify-content:center;gap:18px;margin-top:28px}
+.slider-dots span{width:12px;height:12px;border-radius:50%;background:#4b4741;display:block}
+.slider-dots span.active{background:#d4af37}
+
+.about{padding:110px 6% 70px;text-align:center;background:#050505}
+.about-content{max-width:760px;margin:0 auto}
+.about h2{font-family:'Playfair Display',serif;color:#f4e8cf;font-size:34px;font-weight:500;margin-bottom:18px}
+.gold-line{width:240px;height:1px;background:#d4af37;margin:0 auto 30px}
+.about p{color:#d8cfbd;font-size:16px;line-height:1.65;margin:0 auto 18px;max-width:680px}
+.contact-buttons{margin-top:44px;display:flex;justify-content:center;gap:52px;flex-wrap:wrap}
+.contact-buttons button{min-width:250px;padding:14px 22px;border-radius:7px;border:1px solid #d4af37;background:transparent;color:#d4af37;font-weight:700;font-size:14px}
+.footer-mark{margin-top:78px;border-top:1px solid rgba(212,175,55,.35);padding-top:40px}
+.footer-mark img{width:170px;max-width:70%}
+
+.cart{position:fixed;top:0;right:-400px;width:370px;max-width:100%;height:100vh;background:#0d0d0d;border-left:1px solid rgba(212,175,55,.25);transition:.3s;z-index:400;padding:22px;overflow:auto}
+.cart.active{right:0}
+.cart h2{color:#d4af37;font-family:'Playfair Display',serif;margin-bottom:20px}
+.close-cart{float:right;background:none;color:white;border:none;font-size:30px}
+.cart-item{border-bottom:1px solid rgba(212,175,55,.18);padding:14px 0}
+.cart-item button{margin-top:8px;background:#1c1c1c;color:#d4af37;border:1px solid rgba(212,175,55,.2);padding:8px 10px;border-radius:8px}
+.total{margin:22px 0;color:#d4af37;font-size:22px}
+.checkout{width:100%;background:#25D366;color:white;border:none;padding:14px;border-radius:12px;font-weight:700}
+
+.product-modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,.85);z-index:9999;padding:20px;overflow:auto}
+.product-modal.active{display:block}
+.modal-content{max-width:900px;margin:40px auto;background:#0d0d0d;border-radius:18px;padding:20px;border:1px solid rgba(212,175,55,.3)}
+.modal-close{float:right;font-size:28px;background:none;border:none;color:white}
+.modal-gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:20px}
+.modal-gallery img{width:100%;height:260px;object-fit:cover;border-radius:12px}
+.modal-info{text-align:center}
+.modal-info h2{font-size:26px;margin-bottom:10px}
+.modal-info p{color:#ccc;margin-bottom:12px;white-space:pre-line}
+.modal-price{color:#d4af37;font-size:28px;margin-bottom:20px}
+.modal-warning{background:rgba(212,175,55,.1);padding:15px;border-radius:12px;margin-bottom:20px}
+.modal-warning strong{color:#d4af37}
+.modal-buttons button{width:100%;margin-top:10px;padding:14px;border:none;border-radius:999px;font-weight:700}
+.btn-whats{background:#25D366;color:white}
+.btn-insta{background:#d4af37;color:#111}
+
+@media(max-width:1000px){
+  .products{grid-template-columns:repeat(2,1fr)}
+  .section-title h2{font-size:60px}
+}
+
+@media(max-width:600px){
+  header{height:78px}
+  .header-logo img{height:56px}
+  .hero{height:calc(100vh - 78px);padding:35px 20px 80px}
+  .hero-content img{width:200px;max-width:75%;margin-bottom:22px}
+  .hero p{font-size:20px;margin-bottom:16px}
+  .section{padding:60px 5% 50px}
+  .section-title h2{font-size:52px}
+  .decor-line{width:250px;margin-top:22px}
+  .catalog-controls{margin:24px auto 30px;gap:16px}
+  .dropdown{width:48%}
+  .dropdown label{font-size:14px}
+  .dropdown-btn{font-size:13px;padding:12px}
+  .dropdown-menu{top:54px}
+  .dropdown-menu button{font-size:13px;padding:12px}
+  .products{grid-template-columns:repeat(2,1fr);gap:14px}
+  .product-img{height:260px}
+  .product-info{padding:12px}
+  .product-info h3{font-size:13px}
+  .product-info p{font-size:11px}
+  .price{font-size:20px}
+  .product-info button{font-size:11px;padding:10px}
+  .slider{width:88vw;height:560px;border-radius:24px}
+  .about{padding:90px 7% 55px}
+  .about h2{font-size:30px}
+  .about p{font-size:14px;line-height:1.58}
+  .side-menu{width:78vw;left:-78vw}
+  .side-menu.active{left:0}
+  .modal-gallery{grid-template-columns:1fr}
+  .modal-gallery img{height:420px}
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <button class="menu-btn" onclick="toggleMenu()">☰</button>
+  <div class="header-logo"><img src="logo-mavien.png" alt="MAVIEN"></div>
+  <button class="cart-icon" onclick="toggleCart()">🛒</button>
+</header>
+
+<div class="side-menu" id="sideMenu">
+  <button class="close-menu" onclick="toggleMenu()">×</button>
+  <div class="side-logo"><img src="logo-mavien.png" alt="MAVIEN"></div>
+
+  <div class="side-links">
+    <a href="#catalogo" onclick="toggleMenu()">Catálogo</a>
+    <a href="#sobre" onclick="toggleMenu()">Sobre a MAVIEN</a>
+    <button onclick="toggleCart(); toggleMenu()">Carrinho 🛒</button>
+  </div>
+
+  <div class="side-divider"></div>
+  <div class="side-title">CATEGORIAS</div>
+
+  <div class="category-list">
+    <button onclick="filterProducts('vestidos','Vestidos'); toggleMenu()">Vestidos <span>›</span></button>
+    <button onclick="filterProducts('conjuntos','Conjuntos'); toggleMenu()">Conjuntos <span>›</span></button>
+    <button onclick="filterProducts('macacao','Macacão'); toggleMenu()">Macacão <span>›</span></button>
+    <button onclick="filterProducts('blusa','Blusa'); toggleMenu()">Blusa <span>›</span></button>
+    <button onclick="filterProducts('cropped','Cropped'); toggleMenu()">Cropped <span>›</span></button>
+    <button onclick="filterProducts('saia','Saia'); toggleMenu()">Saia <span>›</span></button>
+    <button onclick="filterProducts('short','Short'); toggleMenu()">Short <span>›</span></button>
+    <button onclick="filterProducts('calcas','Calças'); toggleMenu()">Calças <span>›</span></button>
+    <button onclick="filterProducts('jeans','Jeans'); toggleMenu()">Jeans <span>›</span></button>
+    <button onclick="filterProducts('acessorios','Acessórios'); toggleMenu()">Acessórios <span>›</span></button>
+    <button onclick="filterProducts('agasalhos','Agasalhos'); toggleMenu()">Agasalhos <span>›</span></button>
+  </div>
+</div>
+
+<section class="hero">
+  <div class="hero-content">
+    <img src="logo-mavien.png" alt="MAVIEN">
+    <p>Looks que valorizam você <br><strong>sem esforço</strong></p>
+    </section>
+
+<section class="bazar-section" id="bazar">
+  <div class="bazar-title">
+    <small>Peças selecionadas</small>
+    <h2>Bazar MAVIEN</h2>
+    <p>Peças com preço especial e giro rápido</p>
+  </div>
+
+  <div class="bazar-grid" id="bazarGrid"></div>
+</section>
+
+<section class="section" id="catalogo">
+    <button class="gold-btn" onclick="document.getElementById('catalogo').scrollIntoView({behavior:'smooth'})">VER PEÇAS</button>
+    
+  </div>
+</section>
+
+<section class="section" id="catalogo">
+  <div class="section-title">
+    <small>Catálogo</small>
+    <h2>Nossas peças</h2>
+    <div class="decor-line"></div>
+  </div>
+
+  <div class="catalog-controls">
+    <div class="dropdown left">
+      <label>Ordenar</label>
+      <button class="dropdown-btn" onclick="toggleDropdown('sortMenu')">
+        <span id="sortLabel">Menor preço</span><span>⌄</span>
+      </button>
+      <div class="dropdown-menu" id="sortMenu">
+        <button onclick="sortProducts('menor','Menor preço')">Menor preço</button>
+        <button onclick="sortProducts('maior','Maior preço')">Maior preço</button>
+        <button onclick="sortProducts('relevantes','Mais relevantes')">Mais relevantes</button>
+      </div>
+    </div>
+
+    <div class="dropdown right">
+      <label>Filtrar</label>
+      <button class="dropdown-btn" onclick="toggleDropdown('filterMenu')">
+        <span id="filterLabel">Selecionar</span><span>⌄</span>
+      </button>
+      <div class="dropdown-menu" id="filterMenu">
+        <button onclick="filterProducts('todos','Todos')">Todos</button>
+        <button onclick="filterProducts('vestidos','Vestidos')">Vestidos</button>
+        <button onclick="filterProducts('conjuntos','Conjuntos')">Conjuntos</button>
+        <button onclick="filterProducts('macacao','Macacão')">Macacão</button>
+        <button onclick="filterProducts('blusa','Blusa')">Blusa</button>
+        <button onclick="filterProducts('cropped','Cropped')">Cropped</button>
+        <button onclick="filterProducts('saia','Saia')">Saia</button>
+        <button onclick="filterProducts('short','Short')">Short</button>
+        <button onclick="filterProducts('calcas','Calças')">Calças</button>
+        <button onclick="filterProducts('jeans','Jeans')">Jeans</button>
+        <button onclick="filterProducts('acessorios','Acessórios')">Acessórios</button>
+        <button onclick="filterProducts('agasalhos','Agasalhos')">Agasalhos</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="products" id="products"></div>
+  <div class="pagination" id="pagination"></div>
+</section>
+
+<section class="destaque-slider" id="destaque">
+  <div class="destaque-title">
+    <h2><span class="light">Peças</span><span class="gold">em destaque</span></h2>
+    <div class="decor-line"></div>
+  </div>
+
+  <div class="slider">
+    <img src="look1.jpg" class="slide active" alt="Peça em destaque">
+    <img src="look2.jpg" class="slide" alt="Peça em destaque">
+    <img src="produto-03.jpg" class="slide" alt="Peça em destaque">
+    <img src="produto-04.jpg" class="slide" alt="Peça em destaque">
+  </div>
+
+  <div class="slider-dots" id="sliderDots">
+    <span class="active"></span><span></span><span></span><span></span>
+  </div>
+</section>
+
+<section class="about" id="sobre">
+  <div class="about-content">
+    <h2>Sobre a MAVIEN</h2>
+    <div class="gold-line"></div>
+
+    <p>A MAVIEN é uma loja online pensada para mulheres que valorizam praticidade, estilo e confiança na hora de se vestir.</p>
+    <p>Aqui, você encontra peças selecionadas para vestir bem, valorizar o corpo e acompanhar sua rotina, do básico ao mais elaborado, sempre com equilíbrio entre conforto e elegância.</p>
+    <p>Nosso catálogo reúne roupas disponíveis à pronta entrega e também opções sob encomenda, permitindo que você tenha acesso a ainda mais modelos, estilos e novidades.</p>
+    <p>A MAVIEN é sobre praticidade, versatilidade e autoestima. Simples. Direto. Bem pensado. ✨</p>
+
+    <div class="contact-buttons">
+      <button onclick="window.open('https://wa.me/5500000000000')">🟢 FALAR NO WHATSAPP</button>
+      <button onclick="window.open('https://www.instagram.com/mavi.mavien?igsh=c2M3ZWo1Y3BpMXo3&utm_source=qr')">📷 @mavi.mavien</button>
+    </div>
+
+    <div class="footer-mark"><img src="logo-mavien.png" alt="MAVIEN"></div>
+  </div>
+</section>
+
+<div class="cart" id="cart">
+  <button class="close-cart" onclick="toggleCart()">×</button>
+  <h2>Seu Carrinho</h2>
+  <div id="cartItems"></div>
+  <div class="total">Total: R$ <span id="total">0,00</span></div>
+  <button class="checkout" onclick="checkout()">Comprar no WhatsApp</button>
+</div>
+
+<div class="product-modal" id="productModal">
+  <div class="modal-content">
+    <button class="modal-close" onclick="closeProductModal()">×</button>
+    <div class="modal-gallery" id="modalGallery"></div>
+    <div class="modal-info">
+      <h2 id="modalTitle"></h2>
+      <p id="modalDesc"></p>
+      <div class="modal-price" id="modalPrice"></div>
+      <div id="modalWarning"></div>
+      <div class="modal-buttons">
+        <button class="btn-whats" onclick="comprarWhats()">Consultar no WhatsApp</button>
+        <button class="btn-insta" onclick="window.open('https://www.instagram.com/mavi.mavien?igsh=c2M3ZWo1Y3BpMXo3&utm_source=qr')">Ver no Instagram</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+const WHATSAPP_NUMERO = "5500000000000";
+
+const produtos = [
+{id:1,categoria:"vestidos",nome:"Vestido Tricot Tubinho Fenda",descricao:"Vestido tubinho em tricot, super adaptável ao corpo e versátil para todas ocasiões. Tamanho único.",preco:65.00,imagens:["Se.jpg"],tipo:"estoque"},
+{id:2,categoria:"macaquinhos",nome:"Macaquinho Alfaiataria Bege",descricao:"Clean, elegante e poderoso. Macaquinho de alfaiataria com decote estruturado, cintura marcada e caimento impecável que valoriza o corpo. Perfeito para quem quer um look sofisticado sem esforço, ideal para diversas ocasiões.",preco:120.00,imagens:["mc1.jpeg","mc2.jpeg","mc3.jpeg"],tipo:"estoque"},
+{id:3,categoria:"acessorios",nome:"Scarpin Rosa Pedraria",descricao:"Scarpin Lança Perfume original, nunca usado — simplesmente impecável. Salto elegante e confortável.",preco:230.00,imagem:"scarpin1.jpeg",tipo:"estoque"},
+{id:4,categoria:"macacao",nome:"Macacão Modelador Vermelho",descricao:"Macacão modelador vermelho com decote marcante, detalhe em pedrarias e modelagem flare que alonga e valoriza o corpo. Peça impactante para noite, festa ou evento. Possui pequena avaria nas pedrarias, fácil de ajustar.",preco:90.00,imagens:["vermelho1.jpeg","vermelho2.jpeg","vermelho3.jpeg"],tipo:"estoque"},
+{id:5,categoria:"conjuntos",nome:"Conjunto Alfaiataria Bege",descricao:"Composição elegante em tons neutros.",preco:249.90,imagem:"look1.jpg",tipo:"encomenda"},
+{id:6,categoria:"macacao",nome:"Macacão Festa Preto",descricao:"Visual marcante para sair.",preco:289.90,imagem:"look2.jpg",tipo:"encomenda"},
+{id:7,categoria:"acessorios",nome:"Sandália Layke Salto Bloco",descricao:"Elegância clássica que combina com tudo. Sandália Layke usada poucas vezes, linda e bem conservada, com design sofisticado e tiras delicadas. Salto confortável e estável, perfeita para qualquer ocasião.",preco:70.00,imagens:["brilho1.jpeg","brilho2.jpeg","brilho3.jpeg"],tipo:"estoque"},
+{id:8,categoria:"acessorios",nome:"Scarpin Rosa Salto Bloco",descricao:"Esse rosa não passa despercebido. Scarpin super estiloso, usado apenas uma vez, com amarração elegante no tornozelo e salto confortável. Perfeito para um look ousado e feminino.",preco:70.00,imagens:["rosa1.jpeg","rosa2.jpeg","rosa3.jpeg"],tipo:"estoque"},
+{id:9,categoria:"acessorios",nome:"Sandália Preta Salto Bloco",descricao:"Clássica, versátil e indispensável. Sandália elegante com salto confortável e estável, perfeita do básico ao look mais arrumado.",preco:50.00,imagens:["preto1.jpeg","preto2.jpeg","preto3.jpeg"],tipo:"estoque"},
+{id:10,categoria:"conjuntos",nome:"Conjunto Lilás Alfaiataria",descricao:"Conjunto leve e elegante. Cropped com modelagem transpassada e manga fluida que valoriza o colo e traz movimento ao look. Acompanha short de alfaiataria de cintura alta com cinto, modelando o corpo e garantindo um visual moderno e sofisticado.",preco:70.00,imagens:["roxo1.jpeg","roxo2.jpeg"],tipo:"estoque"},
+{id:11,categoria:"macacao",nome:"Macacão Rosa Impacto",descricao:"O rosa que rouba a cena\n\nMacacão super modelador, com decote elegante e caimento impecável — uma peça que valoriza o corpo inteiro com facilidade\n\nAcompanha cinto que marca a cintura e deixa o visual ainda mais sofisticado\n\nR$65,00\n\nBolsa delicada para completar o look\nPossui algumas manchinhas (já considerado no valor)\n\nR$10,00\n\nLook pronto para sair e não passar despercebida",preco:65.00,imagens:["neon1.jpeg","neon2.jpeg","neon3.jpeg","neon4.jpeg","neon5.jpeg"],tipo:"estoque"},
+{id:12,categoria:"vestidos",nome:"Vestido Blazer Alfaiataria Rosé",descricao:"Elegância em forma de look. Vestido blazer de alfaiataria estruturado que modela o corpo e entrega presença. Caimento impecável, com acabamento sofisticado que valoriza a silhueta. Ideal para usar do dia à noite com diferentes combinações de acessórios.",preco:90.00,imagens:["m1.jpeg","m2.jpeg","m3.jpeg"],tipo:"estoque"},
+{id:13,categoria:"macacao",nome:"Macacão Modelador Verde",descricao:"Macacão em tecido modelador que valoriza o corpo e garante um caimento impecável. Cor sofisticada e versátil, veste com conforto e acompanha cinto para ajuste perfeito na cintura. Ideal para eventos, saídas ou um look arrumado sem esforço.",preco:90.00,imagem:"verde1.jpeg",tipo:"estoque"},
+{id:14,categoria:"conjuntos",nome:"Look Branco Sofisticado",descricao:"Elegância, brilho e atitude em uma produção completa. Macacão modelador com caimento impecável, combinado com blazer de paetê que traz destaque ao look. Cinto com aplicação metálica estilo western e clutch sofisticada finalizam a produção. Ideal para festa, evento ou noite especial. Pode montar o look completo ou levar peças separadas.",preco:90.00,imagens:["br1.jpeg","br2.jpeg","br3.jpeg","br4.jpeg","br5.jpeg"],tipo:"estoque"},
+{id:15,categoria:"macacao",nome:"Macacão Preto Poder",descricao:"Look poderoso pra quem ama presença\n\nMacacão preto super modelador, com decote elegante que valoriza o corpo\n\nTamanho M (veste menor)\nPossui pequeno defeito no zíper (precisa consertar)\n\nR$60,00\n\nJaqueta preta com aplicação em strass que traz brilho na medida certa\n\nR$80,00\n\nCinto detalhado que marca a cintura e finaliza o visual\n\nR$70,00\n\nCombinação perfeita pra sair e chamar atenção do jeito certo",preco:60.00,imagem:"pt1.jpeg",tipo:"estoque"},
+{id:16,categoria:"conjuntos",nome:"Conjunto Milena Cashmere",descricao:"Conjunto em cashmere com blusa de manga longa e saia. Veste do 36 ao 42. Peça confortável, estilosa e perfeita para dias frios.",preco:125.00,imagens:["IMG-202.jpg","IMG-2.jpg","IMG-2013.jpg"],tipo:"encomenda"},
+{id:17,categoria:"agasalhos",nome:"Jaqueta Fanny",descricao:"Jaqueta com brilho e zíper frontal.",preco:123.00,imagens:["Screenshot_20260425_192451_ZAX.jpg","Screenshot_20260425_192416_ZAX.jpg","Screenshot_20260425_192326_ZAX.jpg"],tipo:"encomenda"},
+{id:18,categoria:"macacao",nome:"Macacão Poder Rosa",descricao:"Elegância com atitude\n\nMacacão rosa com caimento perfeito e modelagem que valoriza o corpo sem esforço\n\nR$90,00\n\nBlazer trazendo aquele toque sofisticado que transforma totalmente o look\nR$50,00\n\nCinto que marca a cintura e finaliza com estilo\nR$20,00\n\nUm conjunto versátil: vai do elegante ao poderoso em segundos",preco:90.00,imagens:["pink1.jpeg","pink2.jpeg","pink3.jpeg","pink4.jpeg"],tipo:"encomenda"},
+{id:19,categoria:"macacao",nome:"Macacão Modelador Laranja",descricao:"Macacão modelador com caimento impecável que valoriza o corpo e veste super bem. Cor intensa e elegante, ideal para festa, evento ou noite especial. Pode montar o look completo com bolsa ou usar separado.",preco:90.00,imagens:["l1.jpeg","l2.jpeg","l3.jpeg","l4.jpeg"],tipo:"estoque"},
+{id:20,categoria:"conjuntos",nome:"Conjunto Canelado Zíper",descricao:"Conjunto canelado com zíper frontal, modela o corpo e é super confortável. Disponível em várias cores.",preco:115.00,imagens:["Con1.jpg","Con2.jpg","Con3.jpg"],tipo:"encomenda"},
+{id:21,categoria:"vestidos",nome:"Vestido Midi Tricot Cinto",descricao:"Vestido midi em tricot modal com elastano, modela o corpo com conforto e elegância. Tamanho único, veste 38 ao 42. Possui cinto ajustável e acabamento com babado na barra.",preco:99.90,imagens:["Midi1.jpg","Midi2.jpg","Midi3.jpg","Midi4.jpg","Midi5.jpg","Midi6.jpg"],tipo:"encomenda"},
+{id:22,categoria:"blusa",nome:"Blusa Modal Rose",descricao:"Blusa modal canelada rose, manga longa, confortável e elegante para looks de inverno.",preco:65.00,imagem:"Screenshot_20260428_134357_ZAX.jpg",tipo:"estoque"},
+{id:23,categoria:"cropped",nome:"Cropped Modal Rose e Preto",descricao:"Cropped modal manga longa, disponível nas cores rose e preto. Peça confortável e moderna.",preco:90.00,imagens:["Screenshot_20260428_134231_ZAX.jpg","Screenshot_20260428_134202_ZAX.jpg"],tipo:"estoque"},
+{id:24,categoria:"cropped",nome:"Cropped Modal Casual Preto",descricao:"Cropped modal casual preto, básico, versátil e fácil de combinar.",preco:50.00,imagem:"Screenshot_20260428_134041_ZAX.jpg",tipo:"estoque"},
+{id:25,categoria:"agasalhos",nome:"Cardigan Tricot Marrom",descricao:"Cardigan em tricot marrom, quentinho, elegante e perfeito para dias frios.",preco:100.00,imagem:"Screenshot_20260428_133921_ZAX.jpg",tipo:"estoque"},
+{id:26,categoria:"agasalhos",nome:"Cardigan Tricot Caramelo e Preto",descricao:"Cardigan em tricot nas cores caramelo e preto, confortável, versátil e ideal para compor looks de inverno.",preco:55.00,imagens:["Screenshot_20260428_133758_ZAX.jpg","Screenshot_20260428_133817_ZAX.jpg","Screenshot_20260428_133705_ZAX.jpg","Screenshot_20260428_133725_ZAX.jpg"],tipo:"estoque"},
+{id:27,categoria:"vestidos",nome:"Vestido Tricot Midi Bege",descricao:"Vestido em tricot midi na cor bege, canelado, confortável e elegante. Ideal para looks femininos e versáteis.",preco:70.00,imagens:["Screenshot_20260428_133556_ZAX.jpg","Screenshot_20260428_133540_ZAX.jpg"],tipo:"estoque"},
+{id:28,categoria:"cropped",nome:"Cropped Tricot Vermelho",descricao:"Cropped em tricot vermelho, manga longa, moderno e estiloso para compor looks marcantes.",preco:55.00,imagens:["Screenshot_20260428_133418_ZAX.jpg","Screenshot_20260428_133344_ZAX.jpg"],tipo:"estoque"},
+{id:29,categoria:"agasalhos",nome:"Casaco Tricot Quadradinho Preto",descricao:"Casaco em tricot quadradinho preto, leve, confortável e fácil de combinar.",preco:45.00,imagem:"Screenshot_20260428_133207_ZAX.jpg",tipo:"estoque"},
+{id:30,categoria:"agasalhos",nome:"Cardigan Tricot Trama Canelada Vermelho",descricao:"Cardigan em tricot vermelho com trama canelada, peça confortável e elegante para dias frios.",preco:60.00,imagem:"Screenshot_20260428_133041_ZAX.jpg",tipo:"estoque"},
+{id:31,categoria:"blusa",nome:"Blusa Tricot Cacharel Canelado Fúcsia e Pink",descricao:"Blusa tricot cacharel canelada, disponível em tons fúcsia e pink. Peça confortável, moderna e feminina.",preco:35.00,imagens:["Screenshot_20260428_132758_ZAX.jpg","Screenshot_20260428_132722_ZAX.jpg"],tipo:"estoque"},
+{id:32,categoria:"vestidos",nome:"Vestido Tricot Cacharel Fenda Tubinho Canelado",descricao:"Vestido tricot cacharel tubinho canelado com fenda. Modela o corpo e combina elegância com conforto.",preco:70.00,imagens:["Screenshot_20260428_131943_ZAX.jpg","Screenshot_20260428_131915_ZAX.jpg"],tipo:"estoque"},
+{id:33,categoria:"blusa",nome:"Blusa Tricot Trança Cacharel",descricao:"Blusa em tricot com textura em trança, gola cacharel, elegante e ideal para dias frios.",preco:55.00,imagens:["Screenshot_20260428_131713_ZAX.jpg"],tipo:"encomenda"},
+{id:34,categoria:"agasalhos",nome:"Cardigan Tricot Vinho",descricao:"Cardigan em tricot na cor vinho, versátil e perfeito para compor looks de inverno.",preco:45.00,imagens:["Screenshot_20260428_131531_ZAX.jpg"],tipo:"encomenda"},
+];
+
+let paginaAtual = 1;
+let categoriaAtual = "todos";
+let ordemAtual = "menor";
+let produtoAtual = null;
+let carrinho = JSON.parse(localStorage.getItem("carrinhoMavien")) || [];
+const itensPorPagina = 16;
+
+function formatPrice(v){return Number(v).toFixed(2).replace(".", ",")}
+function getImagemProduto(p){return p.imagens ? p.imagens[0] : p.imagem}
+function salvarCarrinho(){localStorage.setItem("carrinhoMavien", JSON.stringify(carrinho))}
+
+function renderProducts(){
+  const container=document.getElementById("products");
+  const pagination=document.getElementById("pagination");
+  let lista=[...produtos];
+
+  if(categoriaAtual!=="todos") lista=lista.filter(p=>p.categoria===categoriaAtual);
+  if(ordemAtual==="menor") lista.sort((a,b)=>a.preco-b.preco);
+  if(ordemAtual==="maior") lista.sort((a,b)=>b.preco-a.preco);
+
+  const totalPaginas=Math.ceil(lista.length/itensPorPagina);
+  const inicio=(paginaAtual-1)*itensPorPagina;
+  const paginaItens=lista.slice(inicio,inicio+itensPorPagina);
+
+  container.innerHTML=paginaItens.map(produto=>`
+    <div class="product">
+      <div class="product-img">
+        <img src="${getImagemProduto(produto)}" alt="${produto.nome}">
+      </div>
+      <div class="product-info">
+        <small>${produto.categoria}</small><br>
+        <span class="badge ${produto.tipo === "estoque" ? "estoque" : "encomenda"}">
+          ${produto.tipo === "estoque" ? "Em estoque" : "Sob encomenda"}
+        </span>
+        <h3>${produto.nome}</h3>
+        <p>${produto.descricao}</p>
+        <div class="price">R$ ${formatPrice(produto.preco)}</div>
+        <button onclick="openProductModal(${produto.id})">Ver detalhes</button>
+        <button class="cart-add" onclick="addCarrinho(${produto.id})">Adicionar ao carrinho</button>
+      </div>
+    </div>
+  `).join("");
+
+  pagination.innerHTML="";
+  for(let i=1;i<=totalPaginas;i++){
+    pagination.innerHTML+=`<button class="${i===paginaAtual ? "active" : ""}" onclick="changePage(${i})">${i}</button>`;
+  }
+}
+
+function changePage(n){
+  paginaAtual=n;
+  renderProducts();
+  document.getElementById("catalogo").scrollIntoView({behavior:"smooth"});
+}
+
+function openProductModal(id){
+  const p = produtos.find(x => x.id === id);
+  if(!p) return;
+
+  produtoAtual = p;
+
+  document.getElementById("modalTitle").innerText = p.nome;
+  document.getElementById("modalDesc").innerText = p.descricao;
+  document.getElementById("modalPrice").innerText = "R$ " + formatPrice(p.preco);
+
+  const imagens = p.imagens ? p.imagens : [p.imagem];
+
+  document.getElementById("modalGallery").innerHTML = imagens.map(img => `
+    <img src="${img}" alt="${p.nome}">
+  `).join("");
+
+  const aviso = document.getElementById("modalWarning");
+
+  if(p.tipo === "encomenda"){
+    aviso.innerHTML = `
+      <div class="modal-warning">
+        <strong>Peça sob encomenda ✨</strong><br>
+        Consulte disponibilidade de cores e tamanhos pelo WhatsApp ou Instagram.<br>
+        Prazo de envio: 5 a 10 dias úteis.
+      </div>
+    `;
+  }else{
+    aviso.innerHTML = "";
+  }
+
+  document.getElementById("productModal").classList.add("active");
+}
+
+function closeProductModal(){
+  document.getElementById("productModal").classList.remove("active");
+}
+
+function addCarrinho(id){
+  const produto = produtos.find(p=>p.id===id);
+  if(!produto) return;
+
+  const item = carrinho.find(p=>p.id===id);
+  if(item){
+    item.qtd++;
+  }else{
+    carrinho.push({...produto,qtd:1});
+  }
+
+  salvarCarrinho();
+  renderCart();
+  document.getElementById("cart").classList.add("active");
+}
+
+function aumentarQtd(id){
+  const item = carrinho.find(p=>p.id===id);
+  if(item) item.qtd++;
+  salvarCarrinho();
+  renderCart();
+}
+
+function diminuirQtd(id){
+  const item = carrinho.find(p=>p.id===id);
+  if(!item) return;
+  item.qtd--;
+  if(item.qtd<=0) carrinho = carrinho.filter(p=>p.id!==id);
+  salvarCarrinho();
+  renderCart();
+}
+
+function removerItem(id){
+  carrinho = carrinho.filter(p=>p.id!==id);
+  salvarCarrinho();
+  renderCart();
+}
+
+function renderCart(){
+  const box=document.getElementById("cartItems");
+  const total=document.getElementById("total");
+
+  if(carrinho.length===0){
+    box.innerHTML="<p>Seu carrinho está vazio.</p>";
+    total.innerText="0,00";
+    return;
+  }
+
+  let soma=0;
+
+  box.innerHTML=carrinho.map(p=>{
+    soma += p.preco * p.qtd;
+    return `
+      <div class="cart-item">
+        <strong>${p.nome}</strong><br>
+        <small>${p.tipo === "estoque" ? "Em estoque" : "Sob encomenda"}</small><br>
+        R$ ${formatPrice(p.preco)} x ${p.qtd}<br>
+        <button onclick="diminuirQtd(${p.id})">-</button>
+        <button onclick="aumentarQtd(${p.id})">+</button>
+        <button onclick="removerItem(${p.id})">Remover</button>
+      </div>
+    `;
+  }).join("");
+
+  total.innerText=formatPrice(soma);
+}
+
+function checkout(){
+  if(carrinho.length===0){
+    alert("Seu carrinho está vazio.");
+    return;
+  }
+
+  let msg="Olá! Quero fazer um pedido na MAVIEN:\n\n";
+  let soma=0;
+
+  carrinho.forEach(p=>{
+    soma += p.preco * p.qtd;
+    msg += `- ${p.nome} (${p.qtd}x) | ${p.tipo === "estoque" ? "Em estoque" : "Sob encomenda"} | R$ ${formatPrice(p.preco*p.qtd)}\n`;
+  });
+
+  msg += `\nTotal: R$ ${formatPrice(soma)}`;
+  msg += `\n\nForma de pagamento: quero combinar pelo WhatsApp.`;
+
+  window.open(`https://wa.me/${WHATSAPP_NUMERO}?text=${encodeURIComponent(msg)}`,"_blank");
+}
+
+function comprarWhats(){
+  if(!produtoAtual) return;
+  const msg=`Olá! Quero consultar disponibilidade da peça ${produtoAtual.nome}. Gostaria de saber cores, tamanhos e prazo de envio.`;
+  window.open(`https://wa.me/${WHATSAPP_NUMERO}?text=${encodeURIComponent(msg)}`,"_blank");
+}
+
+function filterProducts(cat,label){
+  categoriaAtual=cat;
+  paginaAtual=1;
+  document.getElementById("filterLabel").innerText=label;
+  closeDropdowns();
+  renderProducts();
+}
+
+function sortProducts(tipo,label){
+  ordemAtual=tipo;
+  paginaAtual=1;
+  document.getElementById("sortLabel").innerText=label;
+  closeDropdowns();
+  renderProducts();
+}
+
+function toggleDropdown(id){
+  const menu=document.getElementById(id);
+  if(!menu) return;
+
+  document.querySelectorAll(".dropdown-menu").forEach(item=>{
+    if(item.id!==id) item.classList.remove("active");
+  });
+
+  menu.classList.toggle("active");
+}
+
+function closeDropdowns(){
+  document.querySelectorAll(".dropdown-menu").forEach(menu=>menu.classList.remove("active"));
+}
+
+function toggleCart(){
+  document.getElementById("cart").classList.toggle("active");
+}
+
+function toggleMenu(){
+  document.getElementById("sideMenu").classList.toggle("active");
+}
+
+let slideAtual=0;
+function iniciarSlider(){
+  const slides=document.querySelectorAll(".slide");
+  const dots=document.querySelectorAll("#sliderDots span");
+  if(slides.length===0) return;
+
+  setInterval(()=>{
+    slides[slideAtual].classList.remove("active");
+    dots[slideAtual].classList.remove("active");
+
+    slideAtual=(slideAtual+1)%slides.length;
+
+    slides[slideAtual].classList.add("active");
+    dots[slideAtual].classList.add("active");
+  },3500);
+}
+const produtosBazar = [
+  {
+    id:101,
+    nome:"Macacão Rosa",
+    descricao:"Modelador com cinto",
+    preco:65.00,
+    imagem:"neon1.jpeg"
+  },
+  {
+    id:102,
+    nome:"Macacão Preto",
+    descricao:"Peça com pequeno ajuste",
+    preco:60.00,
+    imagem:"pt1.jpeg"
+  },
+  {
+    id:103,
+    nome:"Sandália Pink",
+    descricao:"Usada 1x",
+    preco:70.00,
+    imagem:"rosa1.jpeg"
+  },
+  {
+    id:104,
+    nome:"Sandália Preta",
+    descricao:"Clássica e versátil",
+    preco:50.00,
+    imagem:"preto1.jpeg"
+  }
+];
+
+function renderBazar(){
+  const el = document.getElementById("bazarGrid");
+
+  el.innerHTML = produtosBazar.map(p=>`
+    <div class="bazar-card">
+      <span class="bazar-tag">BAZAR</span>
+      <div class="bazar-img">
+        <img src="${p.imagem}">
+      </div>
+      <div class="bazar-info">
+        <h3>${p.nome}</h3>
+        <p>${p.descricao}</p>
+        <div class="bazar-price">R$ ${p.preco.toFixed(2)}</div>
+      </div>
+    </div>
+  `).join("");
+}
+renderProducts();
+renderCart();
+  renderBazar();
+iniciarSlider();
+</script>
+
+</body>
+</html>
